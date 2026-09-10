@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="google-site-verification" content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A" />
+
+<title>Solar Panel Sizing Calculator: How Many Watts Do You Need?</title>
+<meta name="description" content="Calculate how many solar watts and panels you need based on your daily watt-hours and local peak sun hours. Free off-grid solar calculator.">
+
+<style>
+  :root{
+    --bg:#0F1613;
+    --surface:#17211D;
+    --surface-2:#1D2A24;
+    --line:#2A3830;
+    --text:#EDEAE2;
+    --muted:#9BA79E;
+    --amber:#F2A93B;
+    --teal:#5C9385;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+  }
+  h1,h2,h3,.mono{font-family:'Space Grotesk','Inter',sans-serif;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  nav{
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0;
+    background:rgba(15,22,19,0.92);
+    backdrop-filter:blur(6px);
+    z-index:10;
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; letter-spacing:-0.01em;}
+  .brand-mark{width:28px; height:28px; border-radius:6px; background:linear-gradient(135deg,var(--amber),var(--teal)); flex-shrink:0;}
+  nav a.back{color:var(--muted); text-decoration:none; font-size:0.92rem;}
+  nav a.back:hover{color:var(--text);}
+
+  header.hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
+  .kicker{color:var(--amber); font-size:0.85rem; font-weight:600; margin-bottom:14px;}
+  h1{font-size:2.3rem; line-height:1.15; letter-spacing:-0.02em; margin:0 0 16px; max-width:18ch;}
+  .hero-sub{color:var(--muted); font-size:1.05rem; max-width:60ch; margin:0;}
+  @media(max-width:640px){ h1{font-size:1.8rem;} }
+
+  main{padding:48px 0 40px;}
+  section{margin-bottom:48px;}
+  h2{font-size:1.4rem; letter-spacing:-0.01em; margin:0 0 6px; padding-bottom:14px; border-bottom:1px solid var(--line);}
+  p{color:#D9D6CD; margin:16px 0; max-width:70ch;}
+  strong{color:var(--text);}
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:28px;
+    margin-top:20px;
+  }
+  .form-group{margin-bottom:22px;}
+  label{display:block; margin-bottom:8px; font-weight:500; font-size:0.95rem;}
+  input[type="range"]{
+    width:100%;
+    accent-color:var(--amber);
+  }
+  .result-box{
+    background:var(--surface-2);
+    border-left:3px solid var(--amber);
+    padding:18px 20px;
+    border-radius:0 8px 8px 0;
+    margin-top:8px;
+    font-size:0.95rem;
+  }
+  .result-box strong{color:var(--amber);}
+
+  table{width:100%; border-collapse:collapse; margin-top:18px; font-size:0.92rem;}
+  th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line);}
+  th{color:var(--muted); font-weight:600; font-size:0.8rem;}
+  tr:last-child td{border-bottom:none;}
+  td.num, th.num{text-align:right; font-family:'Space Grotesk',sans-serif;}
+
+  footer{border-top:1px solid var(--line); padding:32px 0; color:var(--muted); font-size:0.85rem;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark"></span> Off-Grid Power Guide</div>
+    <a class="back" href="index.html">← Generator sizing calculator</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">SOLAR PANEL SIZING</div>
+    <h1>How many watts of solar panels do you actually need?</h1>
+    <p class="hero-sub">Sizing your battery is only half the equation — you also need enough panel wattage to fully recharge it each day. That depends on your daily consumption and how many peak sun hours your location gets. Use the calculator below to find your number.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section id="calculator">
+      <h2>Panel array calculator</h2>
+      <p>Peak sun hours aren't the same as daylight hours — they measure the equivalent hours of full-intensity sunlight your panels receive. Most of the continental US averages 3.5–5.5 peak sun hours; check a solar irradiance map for your specific location.</p>
+
+      <div class="card">
+        <div class="form-group">
+          <label for="dailyWh">Target daily consumption (Wh): <span id="wh-val" class="mono">1500</span> Wh</label>
+          <input type="range" id="dailyWh" min="500" max="6000" step="100" value="1500">
+        </div>
+
+        <div class="form-group">
+          <label for="sunHours">Peak sun hours per day: <span id="sun-val" class="mono">4.5</span> hours</label>
+          <input type="range" id="sunHours" min="2" max="7" step="0.5" value="4.5">
+        </div>
+
+        <div class="result-box" id="panelResult">
+          <strong>Required solar array:</strong> ~500 W minimum panel capacity
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <h2>How the calculation works</h2>
+      <p>The formula is: <strong>Panel watts = (Daily Wh ÷ Peak sun hours) ÷ System efficiency</strong>. System efficiency accounts for inverter conversion loss, cable resistance, panel angle mismatch, and dust or heat derating — typically modeled at around <strong>80%</strong> for a well-installed system.</p>
+      <p>Example: a 1,500 Wh daily load with 4.5 peak sun hours needs roughly 1,500 ÷ 4.5 ÷ 0.8 ≈ 417 W of panels — rounded up to the nearest common panel size, that's a 400–450 W array.</p>
+    </section>
+
+    <section id="table">
+      <h2>Peak sun hours by region (US, rough average)</h2>
+      <table>
+        <thead>
+          <tr><th>Region</th><th class="num">Avg. peak sun hours</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Southwest (AZ, NM, NV)</td><td class="num">5.5–6.5</td></tr>
+          <tr><td>Southeast (FL, GA, TX)</td><td class="num">4.5–5.5</td></tr>
+          <tr><td>Midwest</td><td class="num">4.0–4.5</td></tr>
+          <tr><td>Northeast</td><td class="num">3.5–4.0</td></tr>
+          <tr><td>Pacific Northwest</td><td class="num">3.0–3.5</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Off-Grid Power Guide</span>
+    <span>Figures are estimates — actual output varies with panel angle, shading, and weather.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function updatePanels(){
+    const wh = parseFloat(document.getElementById('dailyWh').value);
+    const hours = parseFloat(document.getElementById('sunHours').value);
+    document.getElementById('wh-val').textContent = Number(wh).toLocaleString();
+    document.getElementById('sun-val').textContent = hours;
+
+    const neededWatts = Math.round((wh / hours) / 0.8);
+    document.getElementById('panelResult').innerHTML =
+      `<strong>Required solar array:</strong> at least ${neededWatts.toLocaleString()} W of panels to fully replenish your daily usage under these sun conditions.`;
+  }
+  document.getElementById('dailyWh').addEventListener('input', updatePanels);
+  document.getElementById('sunHours').addEventListener('input', updatePanels);
+  updatePanels();
+})();
+</script>
+
+</body>
+</html>

@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Search Console Verification -->
+<meta name="google-site-verification" content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A" />
 
 <!-- SEO Meta Tags -->
 <title>Solar Generator Sizing Calculator (Battery & Inverter Guide)</title>
@@ -50,6 +52,8 @@
   nav .wrap{
     display:flex; align-items:center; justify-content:space-between;
     padding-top:16px; padding-bottom:16px;
+    flex-wrap:wrap;
+    gap:10px;
   }
   .brand{
     display:flex; align-items:center; gap:10px;
@@ -62,7 +66,7 @@
   }
   nav a{color:var(--muted); text-decoration:none; font-size:0.92rem; margin-left:28px;}
   nav a:hover{color:var(--text);}
-  .nav-links{display:flex;}
+  .nav-links{display:flex; align-items:center;}
   @media(max-width:640px){.nav-links{display:none;}}
 
   /* ---------- Hero ---------- */
@@ -193,6 +197,7 @@
     font-size:0.95rem;
     color:#D9D6CD;
   }
+  .callout a{color:var(--amber); text-decoration:underline;}
 
   table{
     width:100%;
@@ -208,6 +213,7 @@
   th{color:var(--muted); font-weight:600; font-size:0.8rem;}
   tr:last-child td{border-bottom:none;}
   td.num, th.num{text-align:right; font-family:'Space Grotesk',sans-serif;}
+  td strong{color:var(--text);}
 
   .steps{
     counter-reset:step;
@@ -236,6 +242,17 @@
     font-size:0.9rem;
   }
 
+  .faq-item{
+    margin-bottom:24px;
+    max-width:70ch;
+  }
+  .faq-item h3{
+    font-size:1.1rem;
+    color:var(--text);
+    margin:0 0 8px;
+  }
+  .faq-item p{color:#D9D6CD; margin:0;}
+
   footer{
     border-top:1px solid var(--line);
     padding:32px 0;
@@ -255,6 +272,7 @@
       <a href="#sizing">Sizing</a>
       <a href="#table">Comparison</a>
       <a href="#faq">FAQ</a>
+      <a href="panel-calculator.html">Panel Sizing</a>
     </div>
   </div>
 </nav>
@@ -316,27 +334,48 @@
     </section>
 
     <section id="table">
-      <h2>What size generator fits which setup</h2>
-      <p>These are ballpark figures for a single full day of autonomy with no solar input — i.e., running on stored battery alone. Add solar panels sized to your sun hours to extend this indefinitely.</p>
+      <h2>Sizing reference table</h2>
+      <p>Quick comparison of battery capacity and inverter tier based on your estimated daily consumption — these match the tiers the calculator above uses.</p>
       <table>
         <thead>
-          <tr><th>Setup</th><th class="num">Daily use</th><th class="num">Battery capacity</th><th class="num">Continuous output</th></tr>
+          <tr><th>Daily consumption</th><th>Recommended battery capacity</th><th>Continuous inverter rating</th></tr>
         </thead>
         <tbody>
-          <tr><td>Mini fridge only</td><td class="num">~400 Wh</td><td class="num">500 Wh</td><td class="num">300 W</td></tr>
-          <tr><td>Full-size fridge</td><td class="num">~1,200 Wh</td><td class="num">1,000–1,500 Wh</td><td class="num">500 W</td></tr>
-          <tr><td>Fridge + chest freezer</td><td class="num">~2,000 Wh</td><td class="num">2,000–3,000 Wh</td><td class="num">1,000 W</td></tr>
-          <tr><td>Fridge, freezer + essentials (lights, router, phones)</td><td class="num">~2,800 Wh</td><td class="num">3,000 Wh</td><td class="num">1,500–2,000 W</td></tr>
-          <tr><td>Whole-kitchen backup (adds microwave, coffee maker)</td><td class="num">~4,000 Wh</td><td class="num">4,000–5,000 Wh</td><td class="num">2,500–3,000 W</td></tr>
+          <tr><td><strong>Up to 600 Wh</strong></td><td>500–1,000 Wh</td><td>300–500 W</td></tr>
+          <tr><td><strong>600–1,500 Wh</strong></td><td>1,000–1,500 Wh</td><td>500–1,000 W</td></tr>
+          <tr><td><strong>1,500–2,500 Wh</strong></td><td>2,000–3,000 Wh</td><td>1,000–1,500 W</td></tr>
+          <tr><td><strong>2,500–4,000 Wh</strong></td><td>3,000–4,000 Wh</td><td>1,500–2,500 W</td></tr>
+          <tr><td><strong>Over 4,000 Wh</strong></td><td>5,000 Wh or split across two units</td><td>3,000 W+</td></tr>
         </tbody>
       </table>
     </section>
 
+    <section>
+      <div class="callout">Already sized your battery? Use the <a href="panel-calculator.html">solar panel sizing calculator</a> to figure out how many watts of panels you need to recharge it daily.</div>
+    </section>
+
     <section id="faq">
       <h2>Common questions</h2>
-      <p><strong>Can a small 500 Wh unit run a fridge overnight?</strong> For a few hours, yes — but not through a full day-night cycle without recharging. It will typically get you 8–12 hours on a well-insulated compressor fridge before depletion.</p>
-      <p><strong>Do I need solar panels, or just the battery?</strong> The battery alone gives you a fixed runway. Panels let you recharge during daylight so the system can run indefinitely — essential for anything longer than a short outage.</p>
-      <p><strong>Why does my generator shut off even though it's rated higher than my fridge's wattage?</strong> Almost always the startup surge. Check the unit's surge (peak) rating, not just its continuous rating, against your compressor's startup draw.</p>
+      <div class="faq-item">
+        <h3>Why do refrigerators require a large inverter surge rating?</h3>
+        <p>Refrigerators use a compressor motor. When it kicks on, it briefly draws 3–5× its running wattage before settling to normal draw — your inverter's surge rating needs to clear that spike, not just the running wattage.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How many solar panels do I need to recharge a 2,000 Wh battery?</h3>
+        <p>To fully recharge a 2,000 Wh battery in about 4 hours of peak sunlight, you'll typically need 600–800 W of panels, factoring in system efficiency losses.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I run a full-size fridge and a chest freezer on one portable unit?</h3>
+        <p>Yes, but you'll need a higher-capacity system — 3,000–4,000 Wh with an inverter robust enough to handle both compressors starting up at once.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can a small 500 Wh unit run a fridge overnight?</h3>
+        <p>For a few hours, yes — but not through a full day-night cycle without recharging. Expect roughly 8–12 hours on a well-insulated compressor fridge before depletion.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need solar panels, or just the battery?</h3>
+        <p>The battery alone gives you a fixed runway. Panels let you recharge during daylight so the system can run indefinitely — essential for anything longer than a short outage.</p>
+      </div>
     </section>
 
   </div>
