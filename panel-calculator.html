@@ -39,11 +39,12 @@
     backdrop-filter:blur(6px);
     z-index:10;
   }
-  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; flex-wrap:wrap; gap:10px;}
   .brand{display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; letter-spacing:-0.01em;}
   .brand-mark{width:28px; height:28px; border-radius:6px; background:linear-gradient(135deg,var(--amber),var(--teal)); flex-shrink:0;}
-  nav a.back{color:var(--muted); text-decoration:none; font-size:0.92rem;}
-  nav a.back:hover{color:var(--text);}
+  .nav-links{display:flex; gap:20px;}
+  nav a.link{color:var(--muted); text-decoration:none; font-size:0.92rem;}
+  nav a.link:hover{color:var(--text);}
 
   header.hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
   .kicker{color:var(--amber); font-size:0.85rem; font-weight:600; margin-bottom:14px;}
@@ -66,10 +67,7 @@
   }
   .form-group{margin-bottom:22px;}
   label{display:block; margin-bottom:8px; font-weight:500; font-size:0.95rem;}
-  input[type="range"]{
-    width:100%;
-    accent-color:var(--amber);
-  }
+  input[type="range"]{width:100%; accent-color:var(--amber);}
   .result-box{
     background:var(--surface-2);
     border-left:3px solid var(--amber);
@@ -79,6 +77,16 @@
     font-size:0.95rem;
   }
   .result-box strong{color:var(--amber);}
+  .callout{
+    border-left:3px solid var(--amber);
+    background:var(--surface);
+    padding:16px 20px;
+    border-radius:0 8px 8px 0;
+    max-width:70ch;
+    font-size:0.95rem;
+    color:#D9D6CD;
+  }
+  .callout a{color:var(--amber); text-decoration:underline;}
 
   table{width:100%; border-collapse:collapse; margin-top:18px; font-size:0.92rem;}
   th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line);}
@@ -95,7 +103,10 @@
 <nav>
   <div class="wrap">
     <div class="brand"><span class="brand-mark"></span> Off-Grid Power Guide</div>
-    <a class="back" href="index.html">← Generator sizing calculator</a>
+    <div class="nav-links">
+      <a class="link" href="index.html">Generator sizing</a>
+      <a class="link" href="mppt-calculator.html">Controller sizing</a>
+    </div>
   </div>
 </nav>
 
@@ -151,6 +162,10 @@
           <tr><td>Pacific Northwest</td><td class="num">3.0–3.5</td></tr>
         </tbody>
       </table>
+    </section>
+
+    <section>
+      <div class="callout">Panels sized? Next, check your <a href="mppt-calculator.html">MPPT controller and PV fuse sizing</a> to make sure your electronics can handle that array.</div>
     </section>
 
   </div>

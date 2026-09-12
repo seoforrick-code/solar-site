@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Search Console Verification -->
 <meta name="google-site-verification" content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A" />
 
-<!-- SEO Meta Tags -->
 <title>Solar Generator Sizing Calculator (Battery & Inverter Guide)</title>
 <meta name="description" content="Instantly calculate the right solar generator size, battery capacity, and inverter rating for your fridge, freezer, and appliances. Free 2026 guide.">
 
@@ -32,16 +30,9 @@
     color:var(--text);
     line-height:1.65;
   }
-  h1,h2,h3,.mono{
-    font-family:'Space Grotesk','Inter',sans-serif;
-  }
-  .wrap{
-    max-width:920px;
-    margin:0 auto;
-    padding:0 24px;
-  }
+  h1,h2,h3,.mono{font-family:'Space Grotesk','Inter',sans-serif;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
 
-  /* ---------- Nav ---------- */
   nav{
     border-bottom:1px solid var(--line);
     position:sticky; top:0;
@@ -52,8 +43,7 @@
   nav .wrap{
     display:flex; align-items:center; justify-content:space-between;
     padding-top:16px; padding-bottom:16px;
-    flex-wrap:wrap;
-    gap:10px;
+    flex-wrap:wrap; gap:10px;
   }
   .brand{
     display:flex; align-items:center; gap:10px;
@@ -69,33 +59,15 @@
   .nav-links{display:flex; align-items:center;}
   @media(max-width:640px){.nav-links{display:none;}}
 
-  /* ---------- Hero ---------- */
-  header.hero{
-    padding:72px 0 48px;
-    border-bottom:1px solid var(--line);
-  }
-  .kicker{
-    color:var(--amber);
-    font-size:0.85rem;
-    font-weight:600;
-    margin-bottom:14px;
-  }
+  header.hero{padding:72px 0 48px; border-bottom:1px solid var(--line);}
+  .kicker{color:var(--amber); font-size:0.85rem; font-weight:600; margin-bottom:14px;}
   h1{
-    font-size:2.6rem;
-    line-height:1.12;
-    letter-spacing:-0.02em;
-    margin:0 0 18px;
-    max-width:14ch;
+    font-size:2.6rem; line-height:1.12; letter-spacing:-0.02em;
+    margin:0 0 18px; max-width:14ch;
   }
-  .hero-sub{
-    color:var(--muted);
-    font-size:1.1rem;
-    max-width:56ch;
-    margin:0 0 0;
-  }
+  .hero-sub{color:var(--muted); font-size:1.1rem; max-width:56ch; margin:0;}
   @media(max-width:640px){ h1{font-size:2rem;} }
 
-  /* ---------- Calculator ---------- */
   .calc{
     margin-top:44px;
     background:var(--surface);
@@ -122,9 +94,7 @@
     font-size:0.92rem;
   }
   .appliance-row.head-row{
-    color:var(--muted);
-    font-size:0.78rem;
-    text-transform:none;
+    color:var(--muted); font-size:0.78rem; text-transform:none;
     border-bottom:1px solid var(--line);
   }
   .appliance-row input[type="number"]{
@@ -140,7 +110,6 @@
   .appliance-row input[type="checkbox"]{
     width:17px; height:17px; accent-color:var(--amber);
   }
-  .appliance-row .runtime{color:var(--muted); font-size:0.85rem;}
   .calc-summary{
     margin-top:22px;
     display:grid;
@@ -171,19 +140,14 @@
   }
   .recommend strong{color:var(--teal);}
 
-  /* ---------- Article ---------- */
   main{padding:56px 0 40px;}
   section{margin-bottom:52px;}
   h2{
-    font-size:1.5rem;
-    letter-spacing:-0.01em;
-    margin:0 0 6px;
-    padding-bottom:14px;
+    font-size:1.5rem; letter-spacing:-0.01em;
+    margin:0 0 6px; padding-bottom:14px;
     border-bottom:1px solid var(--line);
   }
-  section > p, section > ul, section > ol{
-    max-width:70ch;
-  }
+  section > p, section > ul, section > ol{max-width:70ch;}
   p{color:#D9D6CD; margin:16px 0;}
   ul,ol{color:#D9D6CD; padding-left:22px;}
   li{margin:8px 0;}
@@ -199,66 +163,29 @@
   }
   .callout a{color:var(--amber); text-decoration:underline;}
 
-  table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:18px;
-    font-size:0.92rem;
-  }
-  th,td{
-    text-align:left;
-    padding:11px 14px;
-    border-bottom:1px solid var(--line);
-  }
+  table{width:100%; border-collapse:collapse; margin-top:18px; font-size:0.92rem;}
+  th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line);}
   th{color:var(--muted); font-weight:600; font-size:0.8rem;}
   tr:last-child td{border-bottom:none;}
   td.num, th.num{text-align:right; font-family:'Space Grotesk',sans-serif;}
   td strong{color:var(--text);}
 
-  .steps{
-    counter-reset:step;
-    list-style:none;
-    padding:0;
-    max-width:70ch;
-  }
-  .steps li{
-    counter-increment:step;
-    position:relative;
-    padding-left:44px;
-    margin:20px 0;
-  }
+  .steps{counter-reset:step; list-style:none; padding:0; max-width:70ch;}
+  .steps li{counter-increment:step; position:relative; padding-left:44px; margin:20px 0;}
   .steps li::before{
     content:counter(step);
-    position:absolute;
-    left:0; top:0;
-    width:30px; height:30px;
-    border-radius:50%;
-    background:var(--surface-2);
-    border:1px solid var(--line);
-    color:var(--amber);
-    font-family:'Space Grotesk',sans-serif;
-    font-weight:600;
-    display:flex; align-items:center; justify-content:center;
-    font-size:0.9rem;
+    position:absolute; left:0; top:0;
+    width:30px; height:30px; border-radius:50%;
+    background:var(--surface-2); border:1px solid var(--line);
+    color:var(--amber); font-family:'Space Grotesk',sans-serif; font-weight:600;
+    display:flex; align-items:center; justify-content:center; font-size:0.9rem;
   }
 
-  .faq-item{
-    margin-bottom:24px;
-    max-width:70ch;
-  }
-  .faq-item h3{
-    font-size:1.1rem;
-    color:var(--text);
-    margin:0 0 8px;
-  }
+  .faq-item{margin-bottom:24px; max-width:70ch;}
+  .faq-item h3{font-size:1.1rem; color:var(--text); margin:0 0 8px;}
   .faq-item p{color:#D9D6CD; margin:0;}
 
-  footer{
-    border-top:1px solid var(--line);
-    padding:32px 0;
-    color:var(--muted);
-    font-size:0.85rem;
-  }
+  footer{border-top:1px solid var(--line); padding:32px 0; color:var(--muted); font-size:0.85rem;}
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
 </style>
 </head>
@@ -273,6 +200,7 @@
       <a href="#table">Comparison</a>
       <a href="#faq">FAQ</a>
       <a href="panel-calculator.html">Panel Sizing</a>
+      <a href="mppt-calculator.html">Controller Sizing</a>
     </div>
   </div>
 </nav>
@@ -351,7 +279,7 @@
     </section>
 
     <section>
-      <div class="callout">Already sized your battery? Use the <a href="panel-calculator.html">solar panel sizing calculator</a> to figure out how many watts of panels you need to recharge it daily.</div>
+      <div class="callout">Already sized your battery? Use the <a href="panel-calculator.html">solar panel sizing calculator</a> to figure out how many watts of panels you need to recharge it daily, then check <a href="mppt-calculator.html">controller and fuse sizing</a> to protect your array.</div>
     </section>
 
     <section id="faq">
