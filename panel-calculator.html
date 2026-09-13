@@ -42,8 +42,8 @@
   nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; flex-wrap:wrap; gap:10px;}
   .brand{display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; letter-spacing:-0.01em;}
   .brand-mark{width:28px; height:28px; border-radius:6px; background:linear-gradient(135deg,var(--amber),var(--teal)); flex-shrink:0;}
-  .nav-links{display:flex; gap:20px;}
-  nav a.link{color:var(--muted); text-decoration:none; font-size:0.92rem;}
+  .nav-links{display:flex; gap:18px; flex-wrap:wrap;}
+  nav a.link{color:var(--muted); text-decoration:none; font-size:0.9rem;}
   nav a.link:hover{color:var(--text);}
 
   header.hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
@@ -55,7 +55,10 @@
   main{padding:48px 0 40px;}
   section{margin-bottom:48px;}
   h2{font-size:1.4rem; letter-spacing:-0.01em; margin:0 0 6px; padding-bottom:14px; border-bottom:1px solid var(--line);}
+  h3{font-size:1.1rem; margin:24px 0 10px;}
   p{color:#D9D6CD; margin:16px 0; max-width:70ch;}
+  ul{color:#D9D6CD; padding-left:22px; max-width:70ch;}
+  li{margin:8px 0;}
   strong{color:var(--text);}
 
   .card{
@@ -94,6 +97,10 @@
   tr:last-child td{border-bottom:none;}
   td.num, th.num{text-align:right; font-family:'Space Grotesk',sans-serif;}
 
+  .faq-item{margin-bottom:22px; max-width:70ch;}
+  .faq-item h3{margin:0 0 8px;}
+  .faq-item p{margin:0;}
+
   footer{border-top:1px solid var(--line); padding:32px 0; color:var(--muted); font-size:0.85rem;}
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
 </style>
@@ -106,6 +113,7 @@
     <div class="nav-links">
       <a class="link" href="index.html">Generator sizing</a>
       <a class="link" href="mppt-calculator.html">Controller sizing</a>
+      <a class="link" href="battery-guide.html">Battery guide</a>
     </div>
   </div>
 </nav>
@@ -123,7 +131,7 @@
 
     <section id="calculator">
       <h2>Panel array calculator</h2>
-      <p>Peak sun hours aren't the same as daylight hours — they measure the equivalent hours of full-intensity sunlight your panels receive. Most of the continental US averages 3.5–5.5 peak sun hours; check a solar irradiance map for your specific location.</p>
+      <p>Peak sun hours aren't the same as daylight hours — they measure the equivalent hours of full-intensity sunlight your panels receive. Most of the continental US averages 3.5–5.5 peak sun hours; check a solar irradiance map for your specific location rather than assuming the number for a whole country or state, since local cloud cover and elevation shift it meaningfully.</p>
 
       <div class="card">
         <div class="form-group">
@@ -146,6 +154,26 @@
       <h2>How the calculation works</h2>
       <p>The formula is: <strong>Panel watts = (Daily Wh ÷ Peak sun hours) ÷ System efficiency</strong>. System efficiency accounts for inverter conversion loss, cable resistance, panel angle mismatch, and dust or heat derating — typically modeled at around <strong>80%</strong> for a well-installed system.</p>
       <p>Example: a 1,500 Wh daily load with 4.5 peak sun hours needs roughly 1,500 ÷ 4.5 ÷ 0.8 ≈ 417 W of panels — rounded up to the nearest common panel size, that's a 400–450 W array.</p>
+
+      <h3>Why "peak sun hours" isn't the same as daylight</h3>
+      <p>A 14-hour summer day doesn't give you 14 hours of usable solar charging. Peak sun hours compress the sun's full arc — including the weaker light of early morning and late afternoon — into an equivalent number of hours at a standardized full-intensity 1,000 W/m² of irradiance. A location might get 14 hours of actual daylight but only 5 peak sun hours worth of usable charging energy. This is the single most common thing people get wrong when sizing panels themselves without a calculator — they estimate based on how long the sun is visible, not how much usable energy it's actually delivering.</p>
+
+      <h3>Seasonal variation matters more than most guides admit</h3>
+      <p>Peak sun hour averages are usually given as an annual figure, but winter and summer numbers for the same location can differ by 40–60%. If you're sizing a system meant to work year-round — a cabin, a permanent off-grid setup, winter storm backup — size your array against your worst realistic month, not the annual average, or you'll find your battery chronically undercharged every winter even though the system "should" work on paper.</p>
+
+      <h3>Cloudy days and derating</h3>
+      <p>Even the 80% efficiency factor above assumes reasonably clear skies. On an overcast day, panel output can drop to 10–25% of rated capacity. This is exactly why battery capacity and panel wattage are sized somewhat independently — the battery is your buffer for bad-weather days, and the panels are sized to recover that buffer on a normal day, not to keep you running indefinitely through a multi-day storm with no sun at all.</p>
+    </section>
+
+    <section>
+      <h2>Panel types and why it affects your count</h2>
+      <p>Not all panels of the same wattage take up the same space or perform the same in partial shade:</p>
+      <ul>
+        <li><strong>Monocrystalline</strong> panels are the most space-efficient and typically the most expensive per watt — best when roof or mounting space is limited.</li>
+        <li><strong>Polycrystalline</strong> panels are slightly less efficient per square foot but generally cheaper, a reasonable choice when you have space to spare.</li>
+        <li><strong>Flexible/portable</strong> panels (common in the portable power station ecosystem) trade some efficiency and lifespan for portability and ease of setup — fine for camping, less ideal for a permanent installation.</li>
+      </ul>
+      <p>When comparing panels, always check the actual rated wattage under standard test conditions rather than a marketing "boosted" figure some budget brands use — a panel labeled 200 W that actually performs closer to 160 W in the field will throw off every calculation on this page.</p>
     </section>
 
     <section id="table">
@@ -164,8 +192,24 @@
       </table>
     </section>
 
+    <section id="faq">
+      <h2>Common questions</h2>
+      <div class="faq-item">
+        <h3>Can I mix different panel wattages in the same array?</h3>
+        <p>You can, but wiring panels of different wattage or voltage in series will cause the whole string to perform at the level of the weakest panel. If you need to mix panel sizes, wire them in separate parallel strings into an MPPT controller that can handle multiple inputs, rather than combining them in one series string.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need more panel wattage than my battery's rated capacity?</h3>
+        <p>Not necessarily — panel wattage and battery capacity solve different problems. Battery capacity determines how long you can run without any sun at all; panel wattage determines how quickly you recover that capacity once the sun is out. A small battery with a large array recharges fast but has little buffer; a large battery with a small array has plenty of buffer but recharges slowly.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What angle should my panels be at?</h3>
+        <p>As a rough rule of thumb, a fixed panel angle roughly equal to your latitude captures a reasonable year-round average. For a system used mainly in summer, tilt closer to latitude minus 15°; for mainly winter use, latitude plus 15°. Portable and flexible panels are usually laid flatter for convenience, at some cost to output — worth factoring in if you're relying on a fixed daily target.</p>
+      </div>
+    </section>
+
     <section>
-      <div class="callout">Panels sized? Next, check your <a href="mppt-calculator.html">MPPT controller and PV fuse sizing</a> to make sure your electronics can handle that array.</div>
+      <div class="callout">Panels sized? Next, check your <a href="mppt-calculator.html">MPPT controller and PV fuse sizing</a>, or read the <a href="battery-guide.html">LiFePO4 vs. AGM battery guide</a> to make sure you've picked the right battery chemistry before wiring it all together.</div>
     </section>
 
   </div>

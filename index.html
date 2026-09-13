@@ -54,10 +54,10 @@
     background:linear-gradient(135deg,var(--amber),var(--teal));
     flex-shrink:0;
   }
-  nav a{color:var(--muted); text-decoration:none; font-size:0.92rem; margin-left:28px;}
+  nav a{color:var(--muted); text-decoration:none; font-size:0.92rem; margin-left:22px;}
   nav a:hover{color:var(--text);}
-  .nav-links{display:flex; align-items:center;}
-  @media(max-width:640px){.nav-links{display:none;}}
+  .nav-links{display:flex; align-items:center; flex-wrap:wrap;}
+  @media(max-width:768px){.nav-links{display:none;}}
 
   header.hero{padding:72px 0 48px; border-bottom:1px solid var(--line);}
   .kicker{color:var(--amber); font-size:0.85rem; font-weight:600; margin-bottom:14px;}
@@ -147,9 +147,10 @@
     margin:0 0 6px; padding-bottom:14px;
     border-bottom:1px solid var(--line);
   }
+  h3{font-size:1.15rem; margin:28px 0 10px;}
   section > p, section > ul, section > ol{max-width:70ch;}
   p{color:#D9D6CD; margin:16px 0;}
-  ul,ol{color:#D9D6CD; padding-left:22px;}
+  ul,ol{color:#D9D6CD; padding-left:22px; max-width:70ch;}
   li{margin:8px 0;}
   strong{color:var(--text);}
   .callout{
@@ -201,6 +202,7 @@
       <a href="#faq">FAQ</a>
       <a href="panel-calculator.html">Panel Sizing</a>
       <a href="mppt-calculator.html">Controller Sizing</a>
+      <a href="battery-guide.html">Battery Guide</a>
     </div>
   </div>
 </nav>
@@ -247,8 +249,14 @@
     <section id="sizing">
       <h2>Work in watt-hours, not watts</h2>
       <p>A standard refrigerator draws roughly <strong>100–400 W</strong> while its compressor is actually running, and a chest freezer sits in a similar range. But a compressor cycles on and off — it isn't drawing that figure continuously — so the number that determines battery size is the total energy consumed over a full day, measured in <strong>watt-hours (Wh)</strong>.</p>
-      <p>The formula is simple: <strong>Wh = Watts × Hours of actual runtime</strong>. A fridge rated at 150 W that runs its compressor for 8 of the 24 hours in a day consumes about 1,200 Wh — not 150 W × 24 h = 3,600 Wh. Manufacturer labels almost never state this, which is why so many people oversize or undersize their setup.</p>
+      <p>The formula is simple: <strong>Wh = Watts × Hours of actual runtime</strong>. A fridge rated at 150 W that runs its compressor for 8 of the 24 hours in a day consumes about 1,200 Wh — not 150 W × 24 h = 3,600 Wh. Manufacturer labels almost never state this, which is why so many people oversize or undersize their setup and either overspend on a unit they didn't need, or buy something that dies by mid-afternoon.</p>
       <div class="callout">Compressor startup (surge) can briefly spike to 3–5× the running wattage for a fraction of a second. Your generator's <em>continuous</em> rating needs to cover normal draw; its <em>peak/surge</em> rating needs to clear that startup spike, or the unit will trip and shut off.</div>
+
+      <h3>Why compressor runtime varies so much</h3>
+      <p>Compressor duty cycle — the percentage of time the compressor is actually running — depends on ambient temperature, how well-insulated the unit is, how often the door opens, and how full it is (a full fridge holds cold better than an empty one because the mass of cold food and drinks acts as thermal buffer). In a cool garage in spring, a fridge might run its compressor only 25% of the day. In a hot RV in July with the door opening constantly, that can climb past 60%. This is exactly why two people with the "same" 150 W fridge can report wildly different real-world battery drain — they're not actually running the same load.</p>
+
+      <h3>Lithium vs. lead-acid: it changes your real usable capacity</h3>
+      <p>Not all "1,000 Wh" batteries are equal in practice. Lithium iron phosphate (LiFePO4) batteries — the standard in modern portable power stations — can typically be discharged to around 90–100% of their rated capacity without meaningfully shortening their lifespan. Older lead-acid or AGM batteries should generally only be discharged to about 50% to avoid damaging the cells. See the full <a href="battery-guide.html" style="color:var(--amber);">LiFePO4 vs. AGM battery guide</a> for a complete breakdown of which chemistry fits your build.</p>
     </section>
 
     <section>
@@ -259,6 +267,7 @@
         <li><strong>Add it all up</strong> to get total daily Wh, then add a 20–25% buffer for battery inefficiency, temperature loss, and inverter conversion loss.</li>
         <li><strong>Match that number to a battery capacity</strong>, and separately confirm the generator's continuous and surge wattage cover your highest simultaneous load.</li>
       </ol>
+      <p>A fifth step people often skip: check the operating temperature range of the battery itself. Lithium batteries lose usable capacity in cold weather and most won't charge safely below freezing without a built-in heating element — if you're sizing a system for winter power outages or cold-climate camping, this matters as much as the wattage math.</p>
     </section>
 
     <section id="table">
@@ -276,33 +285,44 @@
           <tr><td><strong>Over 4,000 Wh</strong></td><td>5,000 Wh or split across two units</td><td>3,000 W+</td></tr>
         </tbody>
       </table>
+      <p style="font-size:0.9rem; color:var(--muted);">These figures assume lithium (LiFePO4) chemistry. Using AGM lead-acid instead? Roughly double the battery capacity — see the <a href="battery-guide.html" style="color:var(--amber);">battery chemistry guide</a>.</p>
     </section>
 
     <section>
-      <div class="callout">Already sized your battery? Use the <a href="panel-calculator.html">solar panel sizing calculator</a> to figure out how many watts of panels you need to recharge it daily, then check <a href="mppt-calculator.html">controller and fuse sizing</a> to protect your array.</div>
+      <h2>Portable power station vs. traditional generator</h2>
+      <p>Everything on this page assumes a battery-based portable power station (the Jackery/EcoFlow/Bluetti category) rather than a fuel-burning generator, and that distinction matters for a fridge specifically. A gas generator is loud, needs to run continuously or in cycles, produces carbon monoxide (making it unsafe indoors or in an enclosed space like a camper), and needs a steady fuel supply. For unattended fridge/freezer duty — say, keeping food cold during a multi-day power outage while you're not standing next to it — a battery-based system charged by solar panels is almost always the safer and lower-maintenance option, even though the upfront cost per watt-hour is usually higher than a fuel generator.</p>
+      <p>The trade-off: a battery-only system without solar input is finite. Once it's depleted, it's dead until you recharge it from the wall or from panels. A fuel generator, by contrast, can run indefinitely as long as you keep feeding it gas — which is why serious off-grid or whole-home backup setups sometimes combine both, using the battery for quiet, clean, unattended overnight power and the fuel generator as a backup for extended outages.</p>
+    </section>
+
+    <section>
+      <div class="callout">Already sized your battery? Use the <a href="panel-calculator.html">solar panel sizing calculator</a> to figure out how many watts of panels you need to recharge it daily, check <a href="mppt-calculator.html">controller and fuse sizing</a> to protect your array, or read the <a href="battery-guide.html">LiFePO4 vs. AGM guide</a> to choose the right battery chemistry.</div>
     </section>
 
     <section id="faq">
       <h2>Common questions</h2>
       <div class="faq-item">
         <h3>Why do refrigerators require a large inverter surge rating?</h3>
-        <p>Refrigerators use a compressor motor. When it kicks on, it briefly draws 3–5× its running wattage before settling to normal draw — your inverter's surge rating needs to clear that spike, not just the running wattage.</p>
+        <p>Refrigerators use a compressor motor. When it kicks on, it briefly draws 3–5× its running wattage before settling to normal draw — your inverter's surge rating needs to clear that spike, not just the running wattage. If the surge rating is too low, the inverter will fault and shut off the instant the compressor tries to start, even though the fridge's normal running wattage is well within the unit's continuous capacity.</p>
       </div>
       <div class="faq-item">
         <h3>How many solar panels do I need to recharge a 2,000 Wh battery?</h3>
-        <p>To fully recharge a 2,000 Wh battery in about 4 hours of peak sunlight, you'll typically need 600–800 W of panels, factoring in system efficiency losses.</p>
+        <p>To fully recharge a 2,000 Wh battery in about 4 hours of peak sunlight, you'll typically need 600–800 W of panels, factoring in system efficiency losses. Use the panel calculator linked above to get an exact figure for your daily load and your region's peak sun hours.</p>
       </div>
       <div class="faq-item">
         <h3>Can I run a full-size fridge and a chest freezer on one portable unit?</h3>
-        <p>Yes, but you'll need a higher-capacity system — 3,000–4,000 Wh with an inverter robust enough to handle both compressors starting up at once.</p>
+        <p>Yes, but you'll need a higher-capacity system — 3,000–4,000 Wh with an inverter robust enough to handle both compressors starting up at once. If both compressors happen to start in the same moment (which does happen occasionally, since they're not synchronized), the combined surge can briefly exceed 1,000 W even though the running wattage of both together is under 300 W.</p>
       </div>
       <div class="faq-item">
         <h3>Can a small 500 Wh unit run a fridge overnight?</h3>
-        <p>For a few hours, yes — but not through a full day-night cycle without recharging. Expect roughly 8–12 hours on a well-insulated compressor fridge before depletion.</p>
+        <p>For a few hours, yes — but not through a full day-night cycle without recharging. Expect roughly 8–12 hours on a well-insulated compressor fridge before depletion, less in hot weather or with an older, less efficient fridge.</p>
       </div>
       <div class="faq-item">
         <h3>Do I need solar panels, or just the battery?</h3>
-        <p>The battery alone gives you a fixed runway. Panels let you recharge during daylight so the system can run indefinitely — essential for anything longer than a short outage.</p>
+        <p>The battery alone gives you a fixed runway. Panels let you recharge during daylight so the system can run indefinitely — essential for anything longer than a short outage, and non-negotiable if you're relying on this setup for extended off-grid living rather than an occasional power cut.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does cold weather affect how long my generator will last?</h3>
+        <p>Yes, in two ways: the fridge's compressor may actually run less in cold ambient temperatures (less heat to fight), but the battery itself will deliver less usable capacity and charge more slowly if it gets cold, especially below freezing. If you're sizing for winter use, add extra margin on both the battery capacity and, if using solar, the panel wattage.</p>
       </div>
     </section>
 

@@ -42,8 +42,8 @@
   nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; flex-wrap:wrap; gap:10px;}
   .brand{display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; letter-spacing:-0.01em;}
   .brand-mark{width:28px; height:28px; border-radius:6px; background:linear-gradient(135deg,var(--amber),var(--teal)); flex-shrink:0;}
-  .nav-links{display:flex; gap:20px;}
-  nav a.link{color:var(--muted); text-decoration:none; font-size:0.92rem;}
+  .nav-links{display:flex; gap:18px; flex-wrap:wrap;}
+  nav a.link{color:var(--muted); text-decoration:none; font-size:0.9rem;}
   nav a.link:hover{color:var(--text);}
 
   header.hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
@@ -55,7 +55,10 @@
   main{padding:48px 0 40px;}
   section{margin-bottom:48px;}
   h2{font-size:1.4rem; letter-spacing:-0.01em; margin:0 0 6px; padding-bottom:14px; border-bottom:1px solid var(--line);}
+  h3{font-size:1.1rem; margin:24px 0 10px;}
   p{color:#D9D6CD; margin:16px 0; max-width:70ch;}
+  ul{color:#D9D6CD; padding-left:22px; max-width:70ch;}
+  li{margin:8px 0;}
   strong{color:var(--text);}
 
   .card{
@@ -104,6 +107,10 @@
   tr:last-child td{border-bottom:none;}
   td.num, th.num{text-align:right; font-family:'Space Grotesk',sans-serif;}
 
+  .faq-item{margin-bottom:22px; max-width:70ch;}
+  .faq-item h3{margin:0 0 8px;}
+  .faq-item p{margin:0;}
+
   footer{border-top:1px solid var(--line); padding:32px 0; color:var(--muted); font-size:0.85rem;}
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
 </style>
@@ -116,6 +123,7 @@
     <div class="nav-links">
       <a class="link" href="index.html">Generator sizing</a>
       <a class="link" href="panel-calculator.html">Panel sizing</a>
+      <a class="link" href="battery-guide.html">Battery guide</a>
     </div>
   </div>
 </nav>
@@ -155,6 +163,22 @@
       <p><strong>Controller sizing:</strong> Max current = Array watts ÷ System voltage. Charge controllers are then sized with a 25% safety margin above that figure (per NEC continuous-load guidance), then rounded up to the nearest common controller size (30A, 40A, 60A, 80A, 100A).</p>
       <p><strong>PV fuse sizing:</strong> The array-side fuse protects the wiring between panels and controller. It's sized using the panel's short-circuit current (Isc) — typically about 1.25× the panel's rated operating current — with another 1.25× safety factor applied on top, giving a combined multiplier of roughly <strong>1.56×</strong> the calculated operating current. This is a general estimate; always check your panel's actual Isc rating on its datasheet, since real-world Isc varies by panel model.</p>
       <div class="callout">This calculator gives a standard estimate for planning purposes. Final controller and fuse selection should always be checked against your specific panel and controller datasheets, and against your local electrical code (e.g. NEC 690 in the US).</div>
+
+      <h3>Why voltage matters as much as wattage</h3>
+      <p>The same array wattage produces very different current depending on your system voltage. An 800 W array on a 12 V system draws roughly 67 A, but the same 800 W array on a 24 V system draws only about 33 A — half the current, which means thinner wire, a smaller (and usually cheaper) controller, and less resistive power loss over long cable runs. This is exactly why larger off-grid systems tend to move to 24 V or 48 V rather than staying at 12 V as they scale up — 12 V starts to require impractically thick cable once you're pushing more than a kilowatt or so of panels.</p>
+    </section>
+
+    <section>
+      <h2>PWM vs. MPPT — why the controller type matters</h2>
+      <p>There are two families of solar charge controller, and they aren't interchangeable in performance:</p>
+      <ul>
+        <li><strong>PWM (Pulse Width Modulation)</strong> controllers are cheaper but essentially force the panel voltage down to match the battery voltage, wasting the difference as heat. They work fine for small, closely-voltage-matched systems but lose significant efficiency otherwise.</li>
+        <li><strong>MPPT (Maximum Power Point Tracking)</strong> controllers actively convert excess panel voltage into extra current, typically recovering 20–30% more usable energy from the same panels compared to PWM, especially when panel voltage is meaningfully higher than battery voltage (e.g. running higher-voltage panels into a 12V battery bank).</li>
+      </ul>
+      <p>Given that panel and battery costs are usually the largest expense in a system, the efficiency gap from choosing PWM over MPPT often costs you more in lost solar harvest over time than the price difference between the two controller types up front — MPPT is the better default for anything beyond a tiny trickle-charge setup.</p>
+
+      <h3>Wire gauge is part of this calculation too</h3>
+      <p>Once you know your operating current, undersized wire between the panels and the controller becomes a fire and efficiency risk in its own right, separate from the fuse. As a rough guide, higher current at lower voltage requires thicker (lower AWG number) copper wire to keep voltage drop and heat within safe limits over any meaningful cable run. If your calculated current comes out above roughly 30 A, it's worth double-checking your wire gauge against a standard ampacity chart rather than assuming whatever cable came with your panels is adequate for the full run length you're using.</p>
     </section>
 
     <section id="table">
@@ -172,8 +196,24 @@
       </table>
     </section>
 
+    <section id="faq">
+      <h2>Common questions</h2>
+      <div class="faq-item">
+        <h3>Do portable power stations need a separate MPPT controller?</h3>
+        <p>Most all-in-one portable power stations (Jackery, EcoFlow, Bluetti-style units) have an MPPT controller built into the unit itself, so you generally don't need a separate external controller for panels sold as compatible accessories. This calculator is more relevant for DIY off-grid builds — vans, cabins, boats — where you're wiring your own panels into a separate battery bank and controller.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What happens if my controller is undersized?</h3>
+        <p>An undersized controller will typically current-limit (capping your charging well below what your panels could actually deliver) or, in cheaper units, overheat and fail prematurely. Either way, you lose out on solar harvest you already paid for by buying the panels.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is the array-side fuse the same as the fuse near the battery?</h3>
+        <p>No — a complete system typically needs a fuse or breaker on the array side (protecting the panel-to-controller wiring) and a separate one on the battery side (protecting the controller-to-battery wiring), since each segment carries different current and needs its own protection sized to that segment's wiring.</p>
+      </div>
+    </section>
+
     <section>
-      <div class="callout">Haven't sized your panels yet? Start with the <a href="panel-calculator.html">solar panel sizing calculator</a> to get your target array wattage first.</div>
+      <div class="callout">Haven't sized your panels yet? Start with the <a href="panel-calculator.html">solar panel sizing calculator</a>, or read the <a href="battery-guide.html">LiFePO4 vs. AGM battery guide</a> to choose your battery chemistry before wiring your controller.</div>
     </section>
 
   </div>
