@@ -42,8 +42,8 @@
   nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; flex-wrap:wrap; gap:10px;}
   .brand{display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; letter-spacing:-0.01em;}
   .brand-mark{width:28px; height:28px; border-radius:6px; background:linear-gradient(135deg,var(--amber),var(--teal)); flex-shrink:0;}
-  .nav-links{display:flex; gap:18px; flex-wrap:wrap;}
-  nav a.link{color:var(--muted); text-decoration:none; font-size:0.9rem;}
+  .nav-links{display:flex; gap:16px; flex-wrap:wrap;}
+  nav a.link{color:var(--muted); text-decoration:none; font-size:0.88rem;}
   nav a.link:hover{color:var(--text);}
 
   header.hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
@@ -97,6 +97,10 @@
   tr:last-child td{border-bottom:none;}
   td.num, th.num{text-align:right; font-family:'Space Grotesk',sans-serif;}
 
+  @media(max-width:640px){
+    table{display:block; overflow-x:auto; white-space:nowrap;}
+  }
+
   .faq-item{margin-bottom:22px; max-width:70ch;}
   .faq-item h3{margin:0 0 8px;}
   .faq-item p{margin:0;}
@@ -114,6 +118,7 @@
       <a class="link" href="index.html">Generator sizing</a>
       <a class="link" href="mppt-calculator.html">Controller sizing</a>
       <a class="link" href="battery-guide.html">Battery guide</a>
+      <a class="link" href="best-solar-generators-fridge.html">Best generators</a>
     </div>
   </div>
 </nav>
@@ -152,7 +157,7 @@
 
     <section id="method">
       <h2>How the calculation works</h2>
-      <p>The formula is: <strong>Panel watts = (Daily Wh ÷ Peak sun hours) ÷ System efficiency</strong>. System efficiency accounts for inverter conversion loss, cable resistance, panel angle mismatch, and dust or heat derating — typically modeled at around <strong>80%</strong> for a well-installed system.</p>
+      <p>The formula is: <strong>Panel watts = (Daily Wh ÷ Peak sun hours) ÷ System efficiency</strong>. System efficiency accounts for inverter conversion loss, cable resistance, panel angle mismatch, and dust or heat derating — typically modeled at around <strong>80%</strong> for a well-installed system, though real systems can range roughly 70–85% depending on configuration.</p>
       <p>Example: a 1,500 Wh daily load with 4.5 peak sun hours needs roughly 1,500 ÷ 4.5 ÷ 0.8 ≈ 417 W of panels — rounded up to the nearest common panel size, that's a 400–450 W array.</p>
 
       <h3>Why "peak sun hours" isn't the same as daylight</h3>
@@ -209,7 +214,7 @@
     </section>
 
     <section>
-      <div class="callout">Panels sized? Next, check your <a href="mppt-calculator.html">MPPT controller and PV fuse sizing</a>, or read the <a href="battery-guide.html">LiFePO4 vs. AGM battery guide</a> to make sure you've picked the right battery chemistry before wiring it all together.</div>
+      <div class="callout">Panels sized? Next, check your <a href="mppt-calculator.html">MPPT controller sizing</a>, read the <a href="battery-guide.html">LiFePO4 vs. AGM battery guide</a>, or see how popular <a href="best-solar-generators-fridge.html">solar generators for a fridge</a> compare.</div>
     </section>
 
   </div>
@@ -218,7 +223,7 @@
 <footer>
   <div class="wrap">
     <span>&copy; 2026 Off-Grid Power Guide</span>
-    <span>Figures are estimates — actual output varies with panel angle, shading, and weather.</span>
+    <span>Figures are estimates — actual output varies with panel angle, shading, and weather. Last updated: September 2026.</span>
   </div>
 </footer>
 

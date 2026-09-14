@@ -54,10 +54,10 @@
     background:linear-gradient(135deg,var(--amber),var(--teal));
     flex-shrink:0;
   }
-  nav a{color:var(--muted); text-decoration:none; font-size:0.92rem; margin-left:22px;}
+  nav a{color:var(--muted); text-decoration:none; font-size:0.9rem; margin-left:20px;}
   nav a:hover{color:var(--text);}
   .nav-links{display:flex; align-items:center; flex-wrap:wrap;}
-  @media(max-width:768px){.nav-links{display:none;}}
+  @media(max-width:900px){.nav-links{display:none;}}
 
   header.hero{padding:72px 0 48px; border-bottom:1px solid var(--line);}
   .kicker{color:var(--amber); font-size:0.85rem; font-weight:600; margin-bottom:14px;}
@@ -171,6 +171,10 @@
   td.num, th.num{text-align:right; font-family:'Space Grotesk',sans-serif;}
   td strong{color:var(--text);}
 
+  @media(max-width:640px){
+    table{display:block; overflow-x:auto; white-space:nowrap;}
+  }
+
   .steps{counter-reset:step; list-style:none; padding:0; max-width:70ch;}
   .steps li{counter-increment:step; position:relative; padding-left:44px; margin:20px 0;}
   .steps li::before{
@@ -203,6 +207,7 @@
       <a href="panel-calculator.html">Panel Sizing</a>
       <a href="mppt-calculator.html">Controller Sizing</a>
       <a href="battery-guide.html">Battery Guide</a>
+      <a href="best-solar-generators-fridge.html">Best Generators</a>
     </div>
   </div>
 </nav>
@@ -256,7 +261,7 @@
       <p>Compressor duty cycle — the percentage of time the compressor is actually running — depends on ambient temperature, how well-insulated the unit is, how often the door opens, and how full it is (a full fridge holds cold better than an empty one because the mass of cold food and drinks acts as thermal buffer). In a cool garage in spring, a fridge might run its compressor only 25% of the day. In a hot RV in July with the door opening constantly, that can climb past 60%. This is exactly why two people with the "same" 150 W fridge can report wildly different real-world battery drain — they're not actually running the same load.</p>
 
       <h3>Lithium vs. lead-acid: it changes your real usable capacity</h3>
-      <p>Not all "1,000 Wh" batteries are equal in practice. Lithium iron phosphate (LiFePO4) batteries — the standard in modern portable power stations — can typically be discharged to around 90–100% of their rated capacity without meaningfully shortening their lifespan. Older lead-acid or AGM batteries should generally only be discharged to about 50% to avoid damaging the cells. See the full <a href="battery-guide.html" style="color:var(--amber);">LiFePO4 vs. AGM battery guide</a> for a complete breakdown of which chemistry fits your build.</p>
+      <p>Not all "1,000 Wh" batteries are equal in practice. Lithium iron phosphate (LiFePO4) batteries — the standard in modern portable power stations — are commonly discharged to around 80–100% of their rated capacity without meaningfully shortening their lifespan. Older lead-acid or AGM batteries are more commonly limited to about 50% discharge to avoid damaging the cells. See the full <a href="battery-guide.html" style="color:var(--amber);">LiFePO4 vs. AGM battery guide</a> for a complete breakdown of which chemistry fits your build.</p>
     </section>
 
     <section>
@@ -267,7 +272,7 @@
         <li><strong>Add it all up</strong> to get total daily Wh, then add a 20–25% buffer for battery inefficiency, temperature loss, and inverter conversion loss.</li>
         <li><strong>Match that number to a battery capacity</strong>, and separately confirm the generator's continuous and surge wattage cover your highest simultaneous load.</li>
       </ol>
-      <p>A fifth step people often skip: check the operating temperature range of the battery itself. Lithium batteries lose usable capacity in cold weather and most won't charge safely below freezing without a built-in heating element — if you're sizing a system for winter power outages or cold-climate camping, this matters as much as the wattage math.</p>
+      <p>A fifth step people often skip: check the operating temperature range of the battery itself. Lithium batteries lose usable capacity in cold weather and many won't charge safely below freezing without a built-in heating element — if you're sizing a system for winter power outages or cold-climate camping, this matters as much as the wattage math.</p>
     </section>
 
     <section id="table">
@@ -285,17 +290,17 @@
           <tr><td><strong>Over 4,000 Wh</strong></td><td>5,000 Wh or split across two units</td><td>3,000 W+</td></tr>
         </tbody>
       </table>
-      <p style="font-size:0.9rem; color:var(--muted);">These figures assume lithium (LiFePO4) chemistry. Using AGM lead-acid instead? Roughly double the battery capacity — see the <a href="battery-guide.html" style="color:var(--amber);">battery chemistry guide</a>.</p>
+      <p style="font-size:0.9rem; color:var(--muted);">These figures generally assume lithium (LiFePO4) chemistry. Using AGM lead-acid instead? See the <a href="battery-guide.html" style="color:var(--amber);">battery chemistry guide</a> for how to adjust.</p>
     </section>
 
     <section>
       <h2>Portable power station vs. traditional generator</h2>
-      <p>Everything on this page assumes a battery-based portable power station (the Jackery/EcoFlow/Bluetti category) rather than a fuel-burning generator, and that distinction matters for a fridge specifically. A gas generator is loud, needs to run continuously or in cycles, produces carbon monoxide (making it unsafe indoors or in an enclosed space like a camper), and needs a steady fuel supply. For unattended fridge/freezer duty — say, keeping food cold during a multi-day power outage while you're not standing next to it — a battery-based system charged by solar panels is almost always the safer and lower-maintenance option, even though the upfront cost per watt-hour is usually higher than a fuel generator.</p>
+      <p>Everything on this page assumes a battery-based portable power station (the Jackery/EcoFlow/Bluetti category) rather than a fuel-burning generator, and that distinction matters for a fridge specifically. A gas generator is loud, needs to run continuously or in cycles, produces carbon monoxide (making it unsafe indoors or in an enclosed space like a camper), and needs a steady fuel supply. For unattended fridge/freezer duty — say, keeping food cold during a multi-day power outage while you're not standing next to it — a battery-based system charged by solar panels is generally the safer and lower-maintenance option, even though the upfront cost per watt-hour is usually higher than a fuel generator.</p>
       <p>The trade-off: a battery-only system without solar input is finite. Once it's depleted, it's dead until you recharge it from the wall or from panels. A fuel generator, by contrast, can run indefinitely as long as you keep feeding it gas — which is why serious off-grid or whole-home backup setups sometimes combine both, using the battery for quiet, clean, unattended overnight power and the fuel generator as a backup for extended outages.</p>
     </section>
 
     <section>
-      <div class="callout">Already sized your battery? Use the <a href="panel-calculator.html">solar panel sizing calculator</a> to figure out how many watts of panels you need to recharge it daily, check <a href="mppt-calculator.html">controller and fuse sizing</a> to protect your array, or read the <a href="battery-guide.html">LiFePO4 vs. AGM guide</a> to choose the right battery chemistry.</div>
+      <div class="callout">Ready to shop? See how popular models compare on the <a href="best-solar-generators-fridge.html">best solar generators for a fridge</a> page, or size your panels and battery chemistry first with the <a href="panel-calculator.html">panel calculator</a> and <a href="battery-guide.html">battery guide</a>.</div>
     </section>
 
     <section id="faq">
@@ -332,7 +337,7 @@
 <footer>
   <div class="wrap">
     <span>&copy; 2026 Off-Grid Power Guide</span>
-    <span>Figures are estimates — always confirm with your appliance's actual nameplate rating.</span>
+    <span>Figures are estimates — always confirm with your appliance's actual nameplate rating. Last updated: September 2026.</span>
   </div>
 </footer>
 
