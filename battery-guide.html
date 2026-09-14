@@ -4,10 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="google-site-verification" content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A" />
+<meta name="google-site-verification" content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A">
 
 <title>LiFePO4 vs AGM Batteries for Off-Grid Solar Systems</title>
-<meta name="description" content="Compare Lithium Iron Phosphate (LiFePO4) and AGM lead-acid batteries for off-grid solar generators: typical depth of discharge, cycle life, weight, and cost considerations.">
+<meta name="description" content="Compare LiFePO4 and AGM batteries for off-grid solar systems, including usable capacity, cycle life, weight, cost, cold-weather charging, and maintenance.">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://solar-guide-livid.vercel.app/battery-guide.html">
+
+<meta property="og:title" content="LiFePO4 vs AGM Batteries for Off-Grid Solar">
+<meta property="og:description" content="A practical comparison of LiFePO4 and AGM batteries for off-grid solar systems, including usable capacity, cycle life, weight, cost and temperature considerations.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://solar-guide-livid.vercel.app/battery-guide.html">
 
 <style>
   :root{
@@ -20,8 +28,16 @@
     --amber:#F2A93B;
     --teal:#5C9385;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+
+  *{
+    box-sizing:border-box;
+  }
+
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+  }
+
   body{
     margin:0;
     font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
@@ -29,37 +45,140 @@
     color:var(--text);
     line-height:1.65;
   }
-  h1,h2,h3,.mono{font-family:'Space Grotesk','Inter',sans-serif;}
-  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  h1,h2,h3,.mono{
+    font-family:'Space Grotesk','Inter',sans-serif;
+  }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px;
+  }
 
   nav{
     border-bottom:1px solid var(--line);
-    position:sticky; top:0;
+    position:sticky;
+    top:0;
     background:rgba(15,22,19,0.92);
     backdrop-filter:blur(6px);
     z-index:10;
   }
-  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; flex-wrap:wrap; gap:10px;}
-  .brand{display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; letter-spacing:-0.01em;}
-  .brand-mark{width:28px; height:28px; border-radius:6px; background:linear-gradient(135deg,var(--amber),var(--teal)); flex-shrink:0;}
-  .nav-links{display:flex; gap:18px; flex-wrap:wrap;}
-  nav a.link{color:var(--muted); text-decoration:none; font-size:0.9rem;}
-  nav a.link:hover{color:var(--text);}
 
-  header.hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
-  .kicker{color:var(--amber); font-size:0.85rem; font-weight:600; margin-bottom:14px;}
-  h1{font-size:2.3rem; line-height:1.15; letter-spacing:-0.02em; margin:0 0 16px; max-width:20ch;}
-  .hero-sub{color:var(--muted); font-size:1.05rem; max-width:60ch; margin:0;}
-  @media(max-width:640px){ h1{font-size:1.8rem;} }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
 
-  main{padding:48px 0 40px;}
-  section{margin-bottom:48px;}
-  h2{font-size:1.4rem; letter-spacing:-0.01em; margin:0 0 6px; padding-bottom:14px; border-bottom:1px solid var(--line);}
-  h3{font-size:1.1rem; margin:24px 0 10px;}
-  p{color:#D9D6CD; margin:16px 0; max-width:70ch;}
-  ul,ol{color:#D9D6CD; padding-left:22px; max-width:70ch;}
-  li{margin:8px 0;}
-  strong{color:var(--text);}
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    font-size:1.05rem;
+    letter-spacing:-0.01em;
+  }
+
+  .brand-mark{
+    width:28px;
+    height:28px;
+    border-radius:6px;
+    background:linear-gradient(135deg,var(--amber),var(--teal));
+    flex-shrink:0;
+  }
+
+  .nav-links{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+
+  nav a.link{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:0.9rem;
+  }
+
+  nav a.link:hover{
+    color:var(--text);
+  }
+
+  header.hero{
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .kicker{
+    color:var(--amber);
+    font-size:0.85rem;
+    font-weight:600;
+    margin-bottom:14px;
+    letter-spacing:0.03em;
+  }
+
+  h1{
+    font-size:2.3rem;
+    line-height:1.15;
+    letter-spacing:-0.02em;
+    margin:0 0 16px;
+    max-width:22ch;
+  }
+
+  .hero-sub{
+    color:var(--muted);
+    font-size:1.05rem;
+    max-width:65ch;
+    margin:0;
+  }
+
+  main{
+    padding:48px 0 40px;
+  }
+
+  section{
+    margin-bottom:52px;
+  }
+
+  h2{
+    font-size:1.4rem;
+    letter-spacing:-0.01em;
+    margin:0 0 6px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+
+  h3{
+    font-size:1.1rem;
+    margin:24px 0 10px;
+  }
+
+  p{
+    color:#D9D6CD;
+    margin:16px 0;
+    max-width:70ch;
+  }
+
+  ul,ol{
+    color:#D9D6CD;
+    padding-left:22px;
+    max-width:70ch;
+  }
+
+  li{
+    margin:8px 0;
+  }
+
+  strong{
+    color:var(--text);
+  }
+
+  a{
+    color:var(--amber);
+  }
 
   .card{
     background:var(--surface);
@@ -68,6 +187,7 @@
     padding:28px;
     margin-top:20px;
   }
+
   .callout{
     border-left:3px solid var(--amber);
     background:var(--surface);
@@ -77,7 +197,12 @@
     font-size:0.95rem;
     color:#D9D6CD;
   }
-  .callout a{color:var(--amber); text-decoration:underline;}
+
+  .callout a{
+    color:var(--amber);
+    text-decoration:underline;
+  }
+
   .disclaimer{
     border:1px solid var(--muted);
     background:var(--surface-2);
@@ -89,155 +214,1008 @@
     margin-top:16px;
   }
 
-  table{width:100%; border-collapse:collapse; margin-top:18px; font-size:0.92rem;}
-  th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line);}
-  th{color:var(--muted); font-weight:600; font-size:0.8rem;}
-  tr:last-child td{border-bottom:none;}
-  td strong{color:var(--text);}
-
-  @media(max-width:640px){
-    table{display:block; overflow-x:auto; white-space:nowrap;}
+  .choice-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:20px;
   }
 
-  .faq-item{margin-bottom:22px; max-width:70ch;}
-  .faq-item h3{margin:0 0 8px;}
-  .faq-item p{margin:0;}
+  .choice-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:24px;
+  }
 
-  footer{border-top:1px solid var(--line); padding:32px 0; color:var(--muted); font-size:0.85rem;}
-  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+  .choice-card h3{
+    margin-top:0;
+    color:var(--text);
+  }
+
+  .choice-card ul{
+    margin-bottom:0;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:18px;
+    font-size:0.92rem;
+  }
+
+  th,td{
+    text-align:left;
+    padding:11px 14px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+
+  th{
+    color:var(--muted);
+    font-weight:600;
+    font-size:0.8rem;
+  }
+
+  tr:last-child td{
+    border-bottom:none;
+  }
+
+  td strong{
+    color:var(--text);
+  }
+
+  .faq-item{
+    margin-bottom:24px;
+    max-width:70ch;
+  }
+
+  .faq-item h3{
+    margin:0 0 8px;
+  }
+
+  .faq-item p{
+    margin:0;
+  }
+
+  .source-list{
+    color:#D9D6CD;
+    max-width:70ch;
+  }
+
+  .source-list li{
+    margin:12px 0;
+  }
+
+  .source-list a{
+    color:var(--amber);
+  }
+
+  .last-updated{
+    color:var(--muted);
+    font-size:0.85rem;
+    margin-top:24px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 0;
+    color:var(--muted);
+    font-size:0.85rem;
+  }
+
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  @media(max-width:700px){
+    .choice-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media(max-width:640px){
+    h1{
+      font-size:1.8rem;
+    }
+
+    table{
+      display:block;
+      overflow-x:auto;
+      white-space:nowrap;
+    }
+
+    .card{
+      padding:20px;
+    }
+  }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"LiFePO4 vs AGM Batteries for Off-Grid Solar Systems",
+  "description":"A practical comparison of LiFePO4 and AGM batteries for off-grid solar systems, including usable capacity, cycle life, weight, cost and temperature considerations.",
+  "url":"https://solar-guide-livid.vercel.app/battery-guide.html",
+  "dateModified":"2026-09-14",
+  "author":{
+    "@type":"Organization",
+    "name":"Off-Grid Power Guide"
+  },
+  "publisher":{
+    "@type":"Organization",
+    "name":"Off-Grid Power Guide"
+  }
+}
+</script>
+
 </head>
+
 <body>
 
 <nav>
   <div class="wrap">
-    <div class="brand"><span class="brand-mark"></span> Off-Grid Power Guide</div>
+
+    <div class="brand">
+      <span class="brand-mark"></span>
+      Off-Grid Power Guide
+    </div>
+
     <div class="nav-links">
       <a class="link" href="index.html">Generator sizing</a>
       <a class="link" href="panel-calculator.html">Panel sizing</a>
       <a class="link" href="mppt-calculator.html">Controller sizing</a>
     </div>
+
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap">
+
     <div class="kicker">BATTERY CHEMISTRY GUIDE</div>
+
     <h1>LiFePO4 vs. AGM batteries: which is right for off-grid solar?</h1>
-    <p class="hero-sub">Every watt-hour figure on this site assumes a battery — but "1,000 Wh" means very different things depending on the chemistry inside it. Here's what generally separates lithium from lead-acid, and where each one still makes sense.</p>
+
+    <p class="hero-sub">
+      LiFePO4 and AGM batteries can both work in off-grid solar systems,
+      but they differ significantly in usable capacity, cycle life, weight,
+      charging behavior, temperature performance, and upfront cost.
+    </p>
+
   </div>
 </header>
 
 <main>
   <div class="wrap">
 
+    <!-- QUICK COMPARISON -->
+
     <section id="comparison">
-      <h2>Quick comparison reference</h2>
-      <p style="font-size:0.9rem; color:var(--muted); margin-top:-8px;">Typical ranges seen across common product lines — actual specifications vary by manufacturer and model. Always check your specific battery's datasheet.</p>
+
+      <h2>Quick comparison: LiFePO4 vs AGM</h2>
+
+      <p style="font-size:0.9rem; color:var(--muted); margin-top:-8px;">
+        The figures below describe common tendencies across consumer and
+        off-grid battery products. Exact specifications vary by manufacturer,
+        model, temperature, charging conditions, and battery management system.
+      </p>
+
       <div class="card">
+
         <table>
           <thead>
             <tr>
               <th>Feature</th>
-              <th>LiFePO4 (Lithium)</th>
-              <th>AGM (Lead-Acid)</th>
+              <th>LiFePO4</th>
+              <th>AGM Lead-Acid</th>
             </tr>
           </thead>
+
           <tbody>
+
             <tr>
-              <td><strong>Depth of discharge (DoD)</strong></td>
-              <td>Often 80–100% usable, depending on manufacturer and BMS settings</td>
-              <td>Commonly limited to ~50% usable to preserve lifespan</td>
+              <td><strong>Usable depth of discharge</strong></td>
+
+              <td>
+                Many products allow substantially deeper routine discharge,
+                often around 80–100% depending on manufacturer specifications
+                and BMS settings.
+              </td>
+
+              <td>
+                Around 50% is commonly used as a conservative planning
+                assumption when prioritizing battery longevity, although
+                specific products may allow deeper discharge.
+              </td>
             </tr>
+
             <tr>
               <td><strong>Cycle life</strong></td>
-              <td>Often rated 2,000–6,000+ cycles, typically to 80% remaining capacity</td>
-              <td>Often rated 300–500 cycles, varies with depth of discharge and temperature</td>
+
+              <td>
+                Commonly rated in the thousands of cycles, but the exact
+                rating and test conditions vary considerably.
+              </td>
+
+              <td>
+                Typically fewer cycles than LiFePO4, with lifespan strongly
+                affected by depth of discharge, temperature and charging.
+              </td>
             </tr>
+
             <tr>
               <td><strong>Weight</strong></td>
-              <td>Generally lighter for the same usable capacity</td>
-              <td>Generally heavier</td>
+
+              <td>
+                Generally provides more usable energy for a given weight.
+              </td>
+
+              <td>
+                Generally heavier for an equivalent amount of usable energy.
+              </td>
             </tr>
+
             <tr>
               <td><strong>Upfront cost</strong></td>
-              <td>Typically higher initial investment</td>
-              <td>Typically lower upfront, but often replaced more frequently</td>
+
+              <td>
+                Usually more expensive initially.
+              </td>
+
+              <td>
+                Usually less expensive to purchase initially.
+              </td>
             </tr>
+
             <tr>
-              <td><strong>Cold weather charging</strong></td>
-              <td>Many chemistries shouldn't be charged below 0°C unless the battery/BMS specifically supports it</td>
-              <td>Generally tolerates cold charging better, though usable capacity drops</td>
+              <td><strong>Cold-weather charging</strong></td>
+
+              <td>
+                Many LiFePO4 batteries should not be charged below 0°C
+                unless the battery specifically supports low-temperature
+                charging through its BMS or heating system.
+              </td>
+
+              <td>
+                Generally more tolerant of cold charging than LiFePO4,
+                although low temperatures can reduce available capacity
+                and affect battery performance.
+              </td>
             </tr>
+
             <tr>
               <td><strong>Maintenance</strong></td>
-              <td>Minimal</td>
-              <td>Occasional terminal checks; sensitive to overcharging</td>
+
+              <td>
+                Generally low maintenance when properly installed and managed.
+              </td>
+
+              <td>
+                Generally low maintenance compared with flooded lead-acid,
+                but charging and terminal condition still matter.
+              </td>
             </tr>
+
           </tbody>
         </table>
+
       </div>
-      <div class="disclaimer">Figures above are general tendencies observed across common product lines, not universal guarantees. Cycle life and safe depth of discharge vary meaningfully by manufacturer, cell quality, battery management system (BMS), temperature, and how the battery is used. Always check your specific battery's datasheet for its rated figures.</div>
+
+      <div class="disclaimer">
+        These are general planning tendencies, not universal specifications.
+        Always use the manufacturer's datasheet for the actual battery you
+        are buying or installing.
+      </div>
+
     </section>
 
-    <section>
-      <h2>Why lithium has become common in modern solar generators</h2>
-      <p>While AGM lead-acid batteries have been used for decades in off-grid setups, Lithium Iron Phosphate (LiFePO4) has become standard in most modern portable power stations and a large share of DIY builds. A major reason is depth of discharge: many LiFePO4 batteries are designed for routine use in the 80–100% usable range, while lead-acid is more commonly limited to around 50% to avoid shortening its lifespan. The exact usable range for any given battery depends on its manufacturer and BMS settings, so this is a general tendency rather than a fixed rule.</p>
-      <p>Put concretely: a "1,000 Wh" AGM battery commonly delivers somewhere around 500 Wh of practical use before deeper discharge starts meaningfully shortening its lifespan. A "1,000 Wh" LiFePO4 battery often delivers closer to 800–1,000 Wh of real usable energy, depending on the specific product. If you're comparing two products by their rated Wh alone without accounting for this, you're not necessarily comparing them on equal terms.</p>
 
-      <h3>Cycle life is where the cost math can flip</h3>
-      <p>AGM batteries are typically cheaper to buy but tend to wear out faster — often rated for a few hundred full discharge cycles before capacity noticeably degrades, though this varies with depth of discharge, temperature, and charge rate. LiFePO4 batteries are commonly rated for several thousand cycles, usually measured to 80% of original capacity remaining rather than total failure. If you calculate cost per cycle rather than just upfront price, lithium is frequently the more economical option over a multi-year horizon for systems cycled daily, even though the initial purchase price is typically higher. Always compare the manufacturer's specific cycle rating and test conditions rather than assuming a generic figure applies to your product.</p>
+    <!-- WHICH ONE -->
 
-      <h3>Weight matters more than people expect</h3>
-      <p>For portable use — camping, vanlife, an emergency kit you need to carry — the weight difference is often significant, since LiFePO4 cells generally have a higher energy density than lead-acid. For a stationary installation this matters less, but for anything you need to lift, mount, or transport regularly, it's often a deciding factor on its own. Check the actual weight listed on the specific product you're considering, since this varies by capacity and manufacturer.</p>
+    <section id="which-battery">
+
+      <h2>Which battery should you choose?</h2>
+
+      <p>
+        Neither chemistry is automatically better for every installation.
+        The better choice depends on how frequently you cycle the battery,
+        whether weight matters, your budget, operating temperature, and how
+        long you expect the system to remain in service.
+      </p>
+
+      <div class="choice-grid">
+
+        <div class="choice-card">
+
+          <h3>Choose LiFePO4 if...</h3>
+
+          <ul>
+            <li>You expect to cycle the battery frequently.</li>
+            <li>You want more usable energy from the same rated capacity.</li>
+            <li>Low weight or portability matters.</li>
+            <li>You plan to keep the system for several years.</li>
+            <li>You want a battery designed for deeper routine discharge.</li>
+            <li>Your battery installation can provide appropriate temperature protection.</li>
+          </ul>
+
+        </div>
+
+        <div class="choice-card">
+
+          <h3>Choose AGM if...</h3>
+
+          <ul>
+            <li>Your upfront budget is the main constraint.</li>
+            <li>The system will be used occasionally rather than cycled every day.</li>
+            <li>The battery will remain stationary.</li>
+            <li>You already have an AGM-based system.</li>
+            <li>You need a lead-acid solution for a particular existing setup.</li>
+            <li>Cold-weather charging is a concern and lithium low-temperature protection isn't available.</li>
+          </ul>
+
+        </div>
+
+      </div>
+
     </section>
 
+
+    <!-- WHY LITHIUM -->
+
     <section>
+
+      <h2>Why LiFePO4 is popular in modern solar systems</h2>
+
+      <p>
+        Lithium Iron Phosphate, commonly abbreviated as LiFePO4 or LFP,
+        has become increasingly common in portable power stations, RV
+        systems, backup batteries and off-grid solar installations.
+        One of its biggest practical advantages is the amount of energy
+        that can typically be used from its rated capacity.
+      </p>
+
+      <p>
+        A battery's rated watt-hours do not necessarily equal the amount
+        of energy you should routinely remove from it. The usable amount
+        depends on the battery's recommended depth of discharge, operating
+        conditions and the manufacturer's specifications.
+      </p>
+
+      <p>
+        For planning purposes, a 1,000 Wh AGM battery may be treated as
+        providing roughly 500 Wh of routinely usable energy when limiting
+        regular discharge to around 50%. A 1,000 Wh LiFePO4 battery may
+        provide substantially more usable energy, potentially around
+        800–1,000 Wh depending on the specific product and its recommended
+        operating limits.
+      </p>
+
+      <div class="callout">
+        <strong>Important:</strong>
+        Do not assume that every LiFePO4 battery should be discharged to
+        100% every cycle. Follow the manufacturer's recommended operating
+        range if you want to maximize battery life.
+      </div>
+
+    </section>
+
+
+    <!-- CYCLE LIFE -->
+
+    <section>
+
+      <h2>Cycle life and long-term cost</h2>
+
+      <p>
+        Battery cycle life describes how many charge and discharge cycles
+        a battery can complete before its capacity falls to a specified
+        level. It does not necessarily mean the battery suddenly stops
+        working at that number.
+      </p>
+
+      <p>
+        LiFePO4 batteries are commonly marketed with cycle-life ratings
+        in the thousands, while AGM batteries generally have lower cycle
+        ratings. However, comparing the numbers directly can be misleading
+        unless the test conditions are also compared.
+      </p>
+
+      <p>
+        Manufacturers may test batteries at different discharge depths,
+        temperatures, charge rates and end-of-life capacity thresholds.
+        For example, a specification might define end of life as 80% of
+        the original capacity rather than complete failure.
+      </p>
+
+      <h3>Why cost per cycle matters</h3>
+
+      <p>
+        AGM can have a lower purchase price, but a frequently cycled system
+        may require replacement sooner. LiFePO4 normally costs more at the
+        beginning but can offer a lower cost per usable cycle when it is
+        cycled regularly over several years.
+      </p>
+
+      <p>
+        The correct comparison is therefore not simply:
+        <strong>"Which battery is cheaper?"</strong>
+        Instead, compare purchase price, usable capacity, expected cycle
+        life, warranty, operating conditions and replacement frequency.
+      </p>
+
+    </section>
+
+
+    <!-- WEIGHT -->
+
+    <section>
+
+      <h2>Weight and portability</h2>
+
+      <p>
+        Battery weight becomes particularly important in portable solar
+        systems, RVs, boats, camping setups and emergency power kits.
+      </p>
+
+      <p>
+        LiFePO4 batteries generally provide more usable energy for a given
+        amount of weight than comparable lead-acid batteries. This can make
+        a significant difference when the battery needs to be carried,
+        mounted or transported regularly.
+      </p>
+
+      <p>
+        For a stationary off-grid installation, however, weight may matter
+        much less than purchase price, cycle life, available space and
+        charging requirements.
+      </p>
+
+    </section>
+
+
+    <!-- AGM -->
+
+    <section>
+
       <h2>Where AGM can still make sense</h2>
-      <p>Lithium isn't automatically the right choice for every situation. AGM lead-acid can remain a reasonable option when:</p>
+
+      <p>
+        AGM batteries are not obsolete. They remain useful in certain
+        applications, especially where the system is inexpensive, stationary
+        or used relatively infrequently.
+      </p>
+
       <ul>
-        <li><strong>Budget is the primary constraint</strong> and the system will see light, occasional use rather than daily deep cycling.</li>
-        <li><strong>Cold-weather charging is a concern</strong> and you can't add a battery with built-in low-temperature protection — many standard LiFePO4 cells shouldn't be charged below freezing without it, while AGM generally tolerates cold charging conditions better, though at reduced capacity.</li>
-        <li><strong>Replacing an existing lead-acid system</strong> where the charge controller and wiring are already built around AGM's voltage characteristics.</li>
-        <li><strong>Weight isn't a constraint</strong> — a stationary installation where the battery never needs to move again after setup.</li>
+
+        <li>
+          <strong>Lower initial budget:</strong>
+          AGM can cost less upfront than an equivalent lithium battery.
+        </li>
+
+        <li>
+          <strong>Occasional backup:</strong>
+          A lightly cycled emergency system may not benefit as much from
+          lithium's long cycle life.
+        </li>
+
+        <li>
+          <strong>Stationary installation:</strong>
+          If the battery never needs to be moved, its greater weight may
+          not be important.
+        </li>
+
+        <li>
+          <strong>Existing lead-acid equipment:</strong>
+          Replacing an existing battery with the same chemistry can simplify
+          compatibility with an existing charging system.
+        </li>
+
+        <li>
+          <strong>Cold environments:</strong>
+          AGM generally handles cold charging better than unprotected
+          LiFePO4, although cold temperatures still affect lead-acid
+          performance and capacity.
+        </li>
+
       </ul>
+
     </section>
 
+
+    <!-- COLD WEATHER -->
+
     <section>
-      <h2>What this means for sizing your system</h2>
-      <p>If you've used the <a href="index.html" style="color:var(--amber);">generator sizing calculator</a> on this site, note that its battery tier recommendations generally assume lithium chemistry with a fairly deep usable discharge range. If you're building a lead-acid based system instead, it's common to roughly double the rated battery capacity to get a comparable amount of real-world usable energy — but confirm this against your specific battery's own DoD rating rather than relying on a fixed multiplier.</p>
-      <div class="callout">Already decided on lithium? Head back to the <a href="index.html">generator sizing calculator</a> to get your battery capacity target, then use the <a href="panel-calculator.html">panel sizing calculator</a> to size your solar input.</div>
+
+      <h2>Cold-weather charging: an important LiFePO4 limitation</h2>
+
+      <p>
+        Temperature is one of the most important differences to understand
+        before installing a LiFePO4 battery in a cold environment.
+      </p>
+
+      <p>
+        Many LiFePO4 batteries should not be charged below 0°C because
+        charging lithium cells at sufficiently low temperatures can cause
+        unwanted chemical and physical changes inside the cells.
+      </p>
+
+      <p>
+        Modern batteries can address this with a battery management system
+        that blocks charging below a specified temperature, or with
+        integrated heating. The exact operating limits depend on the
+        battery manufacturer.
+      </p>
+
+      <div class="disclaimer">
+        Never assume that every LiFePO4 battery has the same temperature
+        protection. Check the manufacturer's charging and discharge
+        temperature specifications before installing the battery outdoors
+        or in an unheated space.
+      </div>
+
     </section>
+
+
+    <!-- SYSTEM SIZING -->
+
+    <section id="sizing">
+
+      <h2>What battery chemistry means for system sizing</h2>
+
+      <p>
+        If you use the
+        <a href="index.html">solar generator sizing calculator</a>,
+        remember that the rated battery capacity is not necessarily the
+        same as the energy you should plan to use.
+      </p>
+
+      <p>
+        A useful first step is to determine your daily energy requirement
+        in watt-hours (Wh). You can then choose a battery capacity based
+        on the chemistry, recommended depth of discharge, inverter losses
+        and the amount of backup time you want.
+      </p>
+
+      <p>
+        For example, if a system requires 1,000 Wh of usable energy,
+        choosing a battery with exactly 1,000 Wh of rated capacity may
+        provide little operating margin. A lead-acid system may require
+        considerably more rated capacity than the usable energy target,
+        while a LiFePO4 system can often use a larger percentage of its
+        rated capacity.
+      </p>
+
+      <div class="callout">
+
+        <strong>Next step:</strong>
+        Start with your energy requirement using the
+        <a href="index.html">generator sizing calculator</a>.
+        Then estimate the solar array using the
+        <a href="panel-calculator.html">solar panel sizing calculator</a>.
+
+      </div>
+
+    </section>
+
+
+    <!-- CHARGING -->
+
+    <section>
+
+      <h2>Do LiFePO4 batteries need a special charge controller?</h2>
+
+      <p>
+        A solar charge controller must be compatible with the battery
+        chemistry and the battery manufacturer's charging requirements.
+      </p>
+
+      <p>
+        Many modern MPPT controllers provide selectable lithium charging
+        profiles. However, the correct settings vary by battery and
+        manufacturer. Older controllers designed only around lead-acid
+        charging may not provide appropriate settings for LiFePO4.
+      </p>
+
+      <p>
+        The controller must also be compatible with the battery bank's
+        voltage, the solar array's voltage and current, and the
+        manufacturer's maximum charging current.
+      </p>
+
+      <div class="callout">
+        Need to check your solar controller and PV array?
+        Use the
+        <a href="mppt-calculator.html">MPPT controller sizing calculator</a>
+        as a planning tool, then verify the final configuration against
+        the controller and battery manufacturer's specifications.
+      </div>
+
+    </section>
+
+
+    <!-- MIXING -->
+
+    <section>
+
+      <h2>Can you mix LiFePO4 and AGM batteries?</h2>
+
+      <p>
+        As a general rule, avoid connecting LiFePO4 and AGM batteries
+        together in the same battery bank unless the system has been
+        specifically engineered for that configuration.
+      </p>
+
+      <p>
+        The two chemistries have different voltage characteristics,
+        charging requirements and discharge behavior. Connecting them
+        directly in parallel can result in uneven current sharing and
+        charging behavior.
+      </p>
+
+      <p>
+        If a system needs both chemistries, keeping them as separate
+        battery banks with appropriate charging and protection equipment
+        is generally the safer design approach.
+      </p>
+
+    </section>
+
+
+    <!-- SAFETY -->
+
+    <section>
+
+      <h2>Is LiFePO4 safe?</h2>
+
+      <p>
+        LiFePO4 is generally regarded as a comparatively stable lithium
+        battery chemistry and has favorable thermal characteristics
+        compared with some other lithium-ion chemistries.
+      </p>
+
+      <p>
+        However, chemistry alone does not determine whether a battery
+        installation is safe.
+      </p>
+
+      <p>
+        Safety also depends on cell quality, the battery management system,
+        charger and charge controller compatibility, wiring, fusing,
+        installation, mechanical protection and operating temperature.
+      </p>
+
+      <p>
+        A properly specified battery and correctly designed electrical
+        system are more important than simply choosing a particular
+        chemistry.
+      </p>
+
+    </section>
+
+
+    <!-- METHODOLOGY -->
+
+    <section id="methodology">
+
+      <h2>How to compare batteries properly</h2>
+
+      <p>
+        When comparing two batteries, do not look only at the advertised
+        watt-hour capacity or purchase price. A better comparison includes
+        the following factors:
+      </p>
+
+      <ol>
+
+        <li>
+          <strong>Rated capacity:</strong>
+          Compare the nominal Wh or Ah rating.
+        </li>
+
+        <li>
+          <strong>Recommended usable capacity:</strong>
+          Check the manufacturer's recommended depth of discharge.
+        </li>
+
+        <li>
+          <strong>Cycle-life test conditions:</strong>
+          Check the discharge depth, temperature and end-of-life definition.
+        </li>
+
+        <li>
+          <strong>Maximum continuous current:</strong>
+          Make sure the battery can supply the inverter and other loads.
+        </li>
+
+        <li>
+          <strong>Charging requirements:</strong>
+          Verify the recommended charging voltage and current.
+        </li>
+
+        <li>
+          <strong>Temperature limits:</strong>
+          Check both charging and discharge temperature ranges.
+        </li>
+
+        <li>
+          <strong>Warranty:</strong>
+          Compare the warranty period and conditions.
+        </li>
+
+        <li>
+          <strong>Physical characteristics:</strong>
+          Check dimensions, weight, terminals and installation requirements.
+        </li>
+
+      </ol>
+
+      <div class="disclaimer">
+        Manufacturer specifications should take priority over generic
+        battery comparisons. Different batteries using the same chemistry
+        can have significantly different performance and operating limits.
+      </div>
+
+    </section>
+
+
+    <!-- FAQ -->
 
     <section id="faq">
-      <h2>Common questions</h2>
+
+      <h2>Frequently asked questions</h2>
+
       <div class="faq-item">
-        <h3>Can I mix LiFePO4 and AGM batteries in the same bank?</h3>
-        <p>This generally isn't recommended. The two chemistries have different charge voltage profiles and discharge curves, so a charge controller optimized for one will typically undercharge or overcharge the other, and the batteries can discharge unevenly within the bank. Keeping chemistries as separate battery banks is the safer default if you need to use both.</p>
+
+        <h3>Is LiFePO4 better than AGM?</h3>
+
+        <p>
+          For many frequently cycled solar systems, LiFePO4 offers advantages
+          in usable capacity, weight and cycle life. AGM can still make sense
+          when upfront cost, an existing lead-acid system or occasional use
+          is more important.
+        </p>
+
       </div>
+
+
       <div class="faq-item">
-        <h3>How long do LiFePO4 batteries actually last in real use?</h3>
-        <p>Manufacturer cycle ratings are usually measured to 80% of original capacity remaining, not total failure — meaning many LiFePO4 batteries continue functioning, just at reduced capacity, beyond their rated cycle count. Real-world lifespan depends heavily on the specific product, how it's used, and operating temperature, so treat manufacturer figures as a reference point rather than a guarantee.</p>
+
+        <h3>How much of an AGM battery can I use?</h3>
+
+        <p>
+          Around 50% depth of discharge is commonly used as a conservative
+          planning assumption for routine AGM use, but the appropriate limit
+          depends on the specific battery and the manufacturer's cycle-life
+          requirements.
+        </p>
+
       </div>
+
+
       <div class="faq-item">
-        <h3>Do I need a special charge controller for lithium?</h3>
-        <p>Generally yes — the charge controller needs to be configured (or purpose-built) for LiFePO4's voltage profile, which differs from lead-acid. Most modern MPPT controllers include a lithium charging profile as a selectable option; older lead-acid-only controllers may not, and using an incorrectly configured controller can undercharge the battery or trip its protection circuitry.</p>
+
+        <h3>Can I discharge a LiFePO4 battery to 100%?</h3>
+
+        <p>
+          Some LiFePO4 products are designed to provide most or nearly all
+          of their rated capacity, but that does not mean 100% discharge
+          should automatically be used every cycle. Follow the manufacturer's
+          recommended operating range if maximizing lifespan is important.
+        </p>
+
       </div>
+
+
       <div class="faq-item">
-        <h3>Is LiFePO4 safe compared to other lithium battery types?</h3>
-        <p>LiFePO4 is generally considered a comparatively stable lithium chemistry, with a lower tendency toward thermal runaway than some other lithium chemistries used in laptops or EVs. That said, safety in any specific product also depends on cell quality, the battery management system, the charger used, installation, temperature, and wiring — chemistry alone doesn't guarantee safety.</p>
+
+        <h3>How long do LiFePO4 batteries last?</h3>
+
+        <p>
+          Many LiFePO4 batteries are specified for thousands of cycles,
+          but the actual lifespan depends on the product, depth of discharge,
+          temperature, charge and discharge rates, and how the battery is
+          managed. Cycle ratings should therefore be compared using the
+          manufacturer's stated test conditions.
+        </p>
+
       </div>
+
+
+      <div class="faq-item">
+
+        <h3>Do LiFePO4 batteries need a BMS?</h3>
+
+        <p>
+          A properly designed LiFePO4 battery pack generally requires a
+          battery management system to monitor and protect the cells from
+          conditions such as overcharge, over-discharge and excessive
+          temperature. Integrated BMS functionality is common in consumer
+          LiFePO4 batteries.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>Can AGM and LiFePO4 be used in the same solar system?</h3>
+
+        <p>
+          They can potentially exist in the same overall electrical system,
+          but they generally should not simply be connected together as one
+          battery bank. Separate battery banks and appropriate charging and
+          protection equipment may be required.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>Which battery is better for an off-grid cabin?</h3>
+
+        <p>
+          LiFePO4 is often attractive for a cabin that cycles its battery
+          regularly because of its usable capacity and cycle life. AGM can
+          still be appropriate for a lower-cost system that is used
+          occasionally or where the existing system is already designed
+          around lead-acid batteries.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>Which battery is better for a solar generator?</h3>
+
+        <p>
+          LiFePO4 is now common in portable power stations because it can
+          provide high usable capacity with relatively low weight and long
+          cycle life. The actual specifications still depend on the
+          individual power station.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- SOURCES -->
+
+    <section id="sources">
+
+      <h2>Sources & further reading</h2>
+
+      <p>
+        Battery specifications vary substantially between manufacturers.
+        The following types of sources are useful when verifying technical
+        claims or selecting a specific battery:
+      </p>
+
+      <ul class="source-list">
+
+        <li>
+          <strong>Battery manufacturer datasheets:</strong>
+          use the manufacturer's documentation for rated capacity,
+          recommended depth of discharge, cycle life, charging voltage,
+          maximum current and temperature limits.
+        </li>
+
+        <li>
+          <strong>Solar charge-controller documentation:</strong>
+          verify lithium charging profiles, voltage limits and maximum
+          charging current before configuring a system.
+        </li>
+
+        <li>
+          <strong>Battery management system documentation:</strong>
+          check protection limits and low-temperature charging behavior
+          for LiFePO4 batteries.
+        </li>
+
+        <li>
+          <strong>Applicable electrical codes and installation guidance:</strong>
+          follow the requirements that apply to the location and system
+          type when designing permanent installations.
+        </li>
+
+      </ul>
+
+      <div class="callout">
+        This page is intended for general education and planning.
+        It is not a substitute for the manufacturer's installation manual,
+        applicable electrical codes, or professional electrical advice.
+      </div>
+
+      <p class="last-updated">
+        Last updated: September 14, 2026
+      </p>
+
     </section>
 
   </div>
 </main>
 
+
 <footer>
+
   <div class="wrap">
-    <span>&copy; 2026 Off-Grid Power Guide</span>
-    <span>General tendencies only — always confirm with your specific battery's datasheet. Last updated: September 2026.</span>
+
+    <span>
+      &copy; 2026 Off-Grid Power Guide
+    </span>
+
+    <span>
+      General information only — verify battery specifications before installation.
+    </span>
+
   </div>
+
 </footer>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"Is LiFePO4 better than AGM?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"For many frequently cycled solar systems, LiFePO4 offers advantages in usable capacity, weight and cycle life. AGM can still make sense when upfront cost, an existing lead-acid system or occasional use is more important."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How much of an AGM battery can I use?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Around 50% depth of discharge is commonly used as a conservative planning assumption for routine AGM use, but the appropriate limit depends on the specific battery and manufacturer's cycle-life requirements."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I discharge a LiFePO4 battery to 100%?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Some LiFePO4 products are designed to provide most or nearly all of their rated capacity, but that does not mean 100% discharge should automatically be used every cycle. Follow the manufacturer's recommended operating range if maximizing lifespan is important."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How long do LiFePO4 batteries last?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Many LiFePO4 batteries are specified for thousands of cycles, but actual lifespan depends on the product, depth of discharge, temperature, charge and discharge rates, and battery management."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Do LiFePO4 batteries need a BMS?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"A properly designed LiFePO4 battery pack generally requires a battery management system to monitor and protect the cells from conditions such as overcharge, over-discharge and excessive temperature."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can AGM and LiFePO4 be used in the same solar system?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"They can potentially exist in the same overall electrical system, but they generally should not simply be connected together as one battery bank. Separate battery banks and appropriate charging and protection equipment may be required."
+      }
+    }
+  ]
+}
+</script>
 
 </body>
 </html>

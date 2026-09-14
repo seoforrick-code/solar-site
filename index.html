@@ -1,399 +1,1848 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0f14">
 
-<meta name="google-site-verification" content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A" />
+  <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
 
-<title>Solar Generator Sizing Calculator (Battery & Inverter Guide)</title>
-<meta name="description" content="Instantly calculate the right solar generator size, battery capacity, and inverter rating for your fridge, freezer, and appliances. Free 2026 guide.">
+  <title>Solar Generator Sizing Calculator | Off-Grid Power Guide</title>
 
-<style>
-  :root{
-    --bg:#0F1613;
-    --surface:#17211D;
-    --surface-2:#1D2A24;
-    --line:#2A3830;
-    --text:#EDEAE2;
-    --muted:#9BA79E;
-    --amber:#F2A93B;
-    --teal:#5C9385;
-    --danger:#D97757;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.65;
-  }
-  h1,h2,h3,.mono{font-family:'Space Grotesk','Inter',sans-serif;}
-  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+  <meta
+    name="description"
+    content="Free solar generator sizing calculator. Estimate daily energy use, battery capacity, and inverter power for refrigerators, freezers, lights, routers, laptops, and other appliances."
+  >
 
-  nav{
-    border-bottom:1px solid var(--line);
-    position:sticky; top:0;
-    background:rgba(15,22,19,0.92);
-    backdrop-filter:blur(6px);
-    z-index:10;
-  }
-  nav .wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    padding-top:16px; padding-bottom:16px;
-    flex-wrap:wrap; gap:10px;
-  }
-  .brand{
-    display:flex; align-items:center; gap:10px;
-    font-weight:600; font-size:1.05rem; letter-spacing:-0.01em;
-  }
-  .brand-mark{
-    width:28px; height:28px; border-radius:6px;
-    background:linear-gradient(135deg,var(--amber),var(--teal));
-    flex-shrink:0;
-  }
-  nav a{color:var(--muted); text-decoration:none; font-size:0.9rem; margin-left:20px;}
-  nav a:hover{color:var(--text);}
-  .nav-links{display:flex; align-items:center; flex-wrap:wrap;}
-  @media(max-width:900px){.nav-links{display:none;}}
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://solar-guide-livid.vercel.app/">
 
-  header.hero{padding:72px 0 48px; border-bottom:1px solid var(--line);}
-  .kicker{color:var(--amber); font-size:0.85rem; font-weight:600; margin-bottom:14px;}
-  h1{
-    font-size:2.6rem; line-height:1.12; letter-spacing:-0.02em;
-    margin:0 0 18px; max-width:14ch;
-  }
-  .hero-sub{color:var(--muted); font-size:1.1rem; max-width:56ch; margin:0;}
-  @media(max-width:640px){ h1{font-size:2rem;} }
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Solar Generator Sizing Calculator">
+  <meta
+    property="og:description"
+    content="Estimate solar generator battery capacity and inverter requirements for refrigerators, freezers, and everyday appliances."
+  >
+  <meta property="og:url" content="https://solar-guide-livid.vercel.app/">
+  <meta property="og:site_name" content="Off-Grid Power Guide">
 
-  .calc{
-    margin-top:44px;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:10px;
-    overflow:hidden;
-  }
-  .calc-head{
-    padding:20px 24px;
-    border-bottom:1px solid var(--line);
-    display:flex; justify-content:space-between; align-items:baseline;
-    gap:12px; flex-wrap:wrap;
-  }
-  .calc-head h2{margin:0; font-size:1.05rem;}
-  .calc-head span{color:var(--muted); font-size:0.85rem;}
-  .calc-body{padding:24px;}
-  .appliance-row{
-    display:grid;
-    grid-template-columns:1fr 100px 90px 90px;
-    gap:12px;
-    align-items:center;
-    padding:10px 0;
-    border-bottom:1px solid var(--line);
-    font-size:0.92rem;
-  }
-  .appliance-row.head-row{
-    color:var(--muted); font-size:0.78rem; text-transform:none;
-    border-bottom:1px solid var(--line);
-  }
-  .appliance-row input[type="number"]{
-    width:100%;
-    background:var(--surface-2);
-    border:1px solid var(--line);
-    color:var(--text);
-    padding:7px 8px;
-    border-radius:6px;
-    font-size:0.92rem;
-    font-family:inherit;
-  }
-  .appliance-row input[type="checkbox"]{
-    width:17px; height:17px; accent-color:var(--amber);
-  }
-  .calc-summary{
-    margin-top:22px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-  }
-  @media(max-width:560px){.calc-summary{grid-template-columns:1fr;} .appliance-row{grid-template-columns:1fr 70px 70px 60px; font-size:0.85rem;}}
-  .stat{
-    background:var(--surface-2);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:16px 18px;
-  }
-  .stat .num{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:1.7rem;
-    color:var(--amber);
-    line-height:1;
-  }
-  .stat .label{color:var(--muted); font-size:0.8rem; margin-top:6px;}
-  .recommend{
-    margin-top:14px;
-    padding:16px 18px;
-    border:1px solid var(--teal);
-    background:rgba(92,147,133,0.1);
-    border-radius:8px;
-    font-size:0.92rem;
-  }
-  .recommend strong{color:var(--teal);}
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --surface: #111720;
+      --surface-2: #151d27;
+      --border: #273240;
+      --text: #f1f5f9;
+      --muted: #9aa7b6;
+      --accent: #7dd3fc;
+      --accent-2: #38bdf8;
+      --success: #86efac;
+      --warning: #fcd34d;
+      --danger: #fca5a5;
+      --max-width: 1100px;
+    }
 
-  main{padding:56px 0 40px;}
-  section{margin-bottom:52px;}
-  h2{
-    font-size:1.5rem; letter-spacing:-0.01em;
-    margin:0 0 6px; padding-bottom:14px;
-    border-bottom:1px solid var(--line);
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 15, 20, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 800;
+      color: var(--text);
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 0 20px 70px;
+    }
+
+    .hero {
+      padding: 80px 0 45px;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      margin: 0 0 20px;
+    }
+
+    h2 {
+      margin-top: 60px;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 750px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .calculator {
+      margin-top: 10px;
+    }
+
+    .calc-header {
+      display: grid;
+      grid-template-columns: 1fr 110px 100px 80px;
+      gap: 12px;
+      padding: 0 12px 12px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .appliance-row {
+      display: grid;
+      grid-template-columns: 1fr 110px 100px 80px;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .appliance-name {
+      font-weight: 700;
+    }
+
+    .appliance-note {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .number-input {
+      width: 100%;
+      padding: 9px 10px;
+      color: var(--text);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .number-input:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+    }
+
+    .check-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .check-wrap input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent-2);
+      cursor: pointer;
+    }
+
+    .results {
+      margin-top: 24px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .result-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .result-label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .result-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .recommendation {
+      margin-top: 18px;
+      padding: 20px;
+      border: 1px solid rgba(125, 211, 252, 0.25);
+      background: rgba(125, 211, 252, 0.06);
+      border-radius: 14px;
+    }
+
+    .recommendation strong {
+      color: var(--accent);
+    }
+
+    .notice {
+      margin-top: 16px;
+      padding: 16px;
+      border-left: 3px solid var(--warning);
+      background: rgba(252, 211, 77, 0.06);
+      color: #d7dee7;
+      border-radius: 6px;
+    }
+
+    .success-note {
+      border-left-color: var(--success);
+      background: rgba(134, 239, 172, 0.05);
+    }
+
+    .danger-note {
+      border-left-color: var(--danger);
+      background: rgba(252, 165, 165, 0.05);
+    }
+
+    .formula {
+      margin: 18px 0;
+      padding: 18px;
+      background: #0a0e13;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+      color: var(--accent);
+      overflow-x: auto;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--surface-2);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    td {
+      color: var(--muted);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .faq-item {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item h3 {
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .cta {
+      margin-top: 50px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      background: linear-gradient(
+        135deg,
+        rgba(125, 211, 252, 0.08),
+        rgba(56, 189, 248, 0.02)
+      );
+      border-radius: 18px;
+    }
+
+    .cta-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .cta-link {
+      display: inline-block;
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .cta-link:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      margin: 0 8px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .calc-header {
+        display: none;
+      }
+
+      .appliance-row {
+        grid-template-columns: 1fr 90px 80px;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+
+      h1 {
+        font-size: 2.35rem;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .appliance-row {
+        grid-template-columns: 1fr 85px 50px;
+        gap: 8px;
+      }
+
+      .number-input {
+        padding: 8px;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Solar Generator Sizing Calculator",
+    "url": "https://solar-guide-livid.vercel.app/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "description": "Free calculator for estimating daily energy consumption, battery capacity, and inverter requirements for off-grid solar systems."
   }
-  h3{font-size:1.15rem; margin:28px 0 10px;}
-  section > p, section > ul, section > ol{max-width:70ch;}
-  p{color:#D9D6CD; margin:16px 0;}
-  ul,ol{color:#D9D6CD; padding-left:22px; max-width:70ch;}
-  li{margin:8px 0;}
-  strong{color:var(--text);}
-  .callout{
-    border-left:3px solid var(--amber);
-    background:var(--surface);
-    padding:16px 20px;
-    border-radius:0 8px 8px 0;
-    max-width:70ch;
-    font-size:0.95rem;
-    color:#D9D6CD;
-  }
-  .callout a{color:var(--amber); text-decoration:underline;}
-
-  table{width:100%; border-collapse:collapse; margin-top:18px; font-size:0.92rem;}
-  th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line);}
-  th{color:var(--muted); font-weight:600; font-size:0.8rem;}
-  tr:last-child td{border-bottom:none;}
-  td.num, th.num{text-align:right; font-family:'Space Grotesk',sans-serif;}
-  td strong{color:var(--text);}
-
-  @media(max-width:640px){
-    table{display:block; overflow-x:auto; white-space:nowrap;}
-  }
-
-  .steps{counter-reset:step; list-style:none; padding:0; max-width:70ch;}
-  .steps li{counter-increment:step; position:relative; padding-left:44px; margin:20px 0;}
-  .steps li::before{
-    content:counter(step);
-    position:absolute; left:0; top:0;
-    width:30px; height:30px; border-radius:50%;
-    background:var(--surface-2); border:1px solid var(--line);
-    color:var(--amber); font-family:'Space Grotesk',sans-serif; font-weight:600;
-    display:flex; align-items:center; justify-content:center; font-size:0.9rem;
-  }
-
-  .faq-item{margin-bottom:24px; max-width:70ch;}
-  .faq-item h3{font-size:1.1rem; color:var(--text); margin:0 0 8px;}
-  .faq-item p{color:#D9D6CD; margin:0;}
-
-  footer{border-top:1px solid var(--line); padding:32px 0; color:var(--muted); font-size:0.85rem;}
-  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
-</style>
+  </script>
 </head>
+
 <body>
 
-<nav>
-  <div class="wrap">
-    <div class="brand"><span class="brand-mark"></span> Off-Grid Power Guide</div>
+<header>
+  <nav class="nav" aria-label="Main navigation">
+
+    <a class="brand" href="index.html">
+      Off-Grid Power Guide
+    </a>
+
     <div class="nav-links">
-      <a href="#calculator">Calculator</a>
-      <a href="#sizing">Sizing</a>
-      <a href="#table">Comparison</a>
-      <a href="#faq">FAQ</a>
+      <a href="index.html">Calculator</a>
       <a href="panel-calculator.html">Panel Sizing</a>
-      <a href="mppt-calculator.html">Controller Sizing</a>
-      <a href="battery-guide.html">Battery Guide</a>
-      <a href="best-solar-generators-fridge.html">Best Generators</a>
+      <a href="mppt-calculator.html">MPPT</a>
+      <a href="battery-guide.html">Batteries</a>
+      <a href="best-solar-generators-fridge.html">Generators</a>
     </div>
-  </div>
-</nav>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="kicker">SOLAR GENERATOR SIZING</div>
-    <h1>How big a solar generator do you actually need to run a fridge and freezer?</h1>
-    <p class="hero-sub">Most buying guides quote a single "wattage" number and stop there. That number is nearly useless on its own — sizing a solar generator correctly means working from your daily energy draw in watt-hours, not the sticker wattage of one appliance. Use the calculator below to get a real answer for your setup.</p>
-
-    <div class="calc" id="calculator">
-      <div class="calc-head">
-        <h2>Load calculator</h2>
-        <span>Adjust wattage and daily runtime for your actual appliances</span>
-      </div>
-      <div class="calc-body">
-        <div class="appliance-row head-row">
-          <div>Appliance</div>
-          <div>Watts</div>
-          <div>Hours/day</div>
-          <div>Include</div>
-        </div>
-        <div id="rows"></div>
-
-        <div class="calc-summary">
-          <div class="stat">
-            <div class="num" id="totalWh">0 Wh</div>
-            <div class="label">Estimated daily energy use</div>
-          </div>
-          <div class="stat">
-            <div class="num" id="peakW">0 W</div>
-            <div class="label">Peak simultaneous load (continuous)</div>
-          </div>
-        </div>
-        <div class="recommend" id="recommendation"></div>
-      </div>
-    </div>
-  </div>
+  </nav>
 </header>
 
+
 <main>
-  <div class="wrap">
 
-    <section id="sizing">
-      <h2>Work in watt-hours, not watts</h2>
-      <p>A standard refrigerator draws roughly <strong>100–400 W</strong> while its compressor is actually running, and a chest freezer sits in a similar range. But a compressor cycles on and off — it isn't drawing that figure continuously — so the number that determines battery size is the total energy consumed over a full day, measured in <strong>watt-hours (Wh)</strong>.</p>
-      <p>The formula is simple: <strong>Wh = Watts × Hours of actual runtime</strong>. A fridge rated at 150 W that runs its compressor for 8 of the 24 hours in a day consumes about 1,200 Wh — not 150 W × 24 h = 3,600 Wh. Manufacturer labels almost never state this, which is why so many people oversize or undersize their setup and either overspend on a unit they didn't need, or buy something that dies by mid-afternoon.</p>
-      <div class="callout">Compressor startup (surge) can briefly spike to 3–5× the running wattage for a fraction of a second. Your generator's <em>continuous</em> rating needs to cover normal draw; its <em>peak/surge</em> rating needs to clear that startup spike, or the unit will trip and shut off.</div>
+  <!-- HERO -->
 
-      <h3>Why compressor runtime varies so much</h3>
-      <p>Compressor duty cycle — the percentage of time the compressor is actually running — depends on ambient temperature, how well-insulated the unit is, how often the door opens, and how full it is (a full fridge holds cold better than an empty one because the mass of cold food and drinks acts as thermal buffer). In a cool garage in spring, a fridge might run its compressor only 25% of the day. In a hot RV in July with the door opening constantly, that can climb past 60%. This is exactly why two people with the "same" 150 W fridge can report wildly different real-world battery drain — they're not actually running the same load.</p>
+  <section class="hero">
 
-      <h3>Lithium vs. lead-acid: it changes your real usable capacity</h3>
-      <p>Not all "1,000 Wh" batteries are equal in practice. Lithium iron phosphate (LiFePO4) batteries — the standard in modern portable power stations — are commonly discharged to around 80–100% of their rated capacity without meaningfully shortening their lifespan. Older lead-acid or AGM batteries are more commonly limited to about 50% discharge to avoid damaging the cells. See the full <a href="battery-guide.html" style="color:var(--amber);">LiFePO4 vs. AGM battery guide</a> for a complete breakdown of which chemistry fits your build.</p>
-    </section>
+    <span class="eyebrow">
+      Free Solar Sizing Tool
+    </span>
 
-    <section>
-      <h2>Sizing in four steps</h2>
-      <ol class="steps">
-        <li><strong>List every appliance</strong> you need to run, along with its running wattage (check the nameplate or a plug-in watt meter — don't rely on marketing copy).</li>
-        <li><strong>Multiply by realistic daily runtime.</strong> For a fridge or freezer, compressor run-time is typically 30–50% of the day depending on ambient temperature and door use.</li>
-        <li><strong>Add it all up</strong> to get total daily Wh, then add a 20–25% buffer for battery inefficiency, temperature loss, and inverter conversion loss.</li>
-        <li><strong>Match that number to a battery capacity</strong>, and separately confirm the generator's continuous and surge wattage cover your highest simultaneous load.</li>
-      </ol>
-      <p>A fifth step people often skip: check the operating temperature range of the battery itself. Lithium batteries lose usable capacity in cold weather and many won't charge safely below freezing without a built-in heating element — if you're sizing a system for winter power outages or cold-climate camping, this matters as much as the wattage math.</p>
-    </section>
+    <h1>
+      How big a solar generator do you actually need to run a fridge and freezer?
+    </h1>
 
-    <section id="table">
-      <h2>Sizing reference table</h2>
-      <p>Quick comparison of battery capacity and inverter tier based on your estimated daily consumption — these match the tiers the calculator above uses.</p>
+    <p>
+      Estimate your daily electricity needs, planning battery capacity,
+      and inverter power requirement before buying a solar generator
+      or building an off-grid power system.
+    </p>
+
+  </section>
+
+
+  <!-- CALCULATOR -->
+
+  <section id="calculator" class="card calculator">
+
+    <h2 style="margin-top: 0;">
+      Solar Generator Sizing Calculator
+    </h2>
+
+    <p class="small">
+      Select the appliances you want to include. The calculator estimates
+      energy consumption from watts × hours and separately estimates the
+      running load if all selected appliances were operating at the same time.
+    </p>
+
+
+    <div class="calc-header" aria-hidden="true">
+
+      <div>Appliance</div>
+      <div>Watts</div>
+      <div>Hours/day</div>
+      <div>Include</div>
+
+    </div>
+
+
+    <div id="applianceList"></div>
+
+
+    <div class="results" aria-live="polite">
+
+      <div class="result-grid">
+
+        <div class="result-box">
+
+          <div class="result-label">
+            Daily energy estimate
+          </div>
+
+          <div class="result-value" id="dailyEnergy">
+            0 Wh
+          </div>
+
+        </div>
+
+
+        <div class="result-box">
+
+          <div class="result-label">
+            Planning energy +20% margin
+          </div>
+
+          <div class="result-value" id="planningEnergy">
+            0 Wh
+          </div>
+
+        </div>
+
+
+        <div class="result-box">
+
+          <div class="result-label">
+            Assumed simultaneous running load
+          </div>
+
+          <div class="result-value" id="runningLoad">
+            0 W
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="recommendation" id="recommendation">
+
+        Select appliances to see a sizing estimate.
+
+      </div>
+
+
+      <div class="notice">
+
+        <strong>Important:</strong>
+
+        This calculator provides a planning estimate, not a final
+        electrical design. Actual system sizing depends on appliance
+        measurements, inverter specifications, battery chemistry,
+        temperature, solar conditions, wiring, and manufacturer limits.
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HOW IT WORKS -->
+
+  <section id="sizing">
+
+    <h2>
+      How solar generator sizing works
+    </h2>
+
+
+    <div class="two-column">
+
+      <article class="feature-card">
+
+        <h3>
+          1. Calculate daily energy
+        </h3>
+
+        <p>
+          Start with the power consumed by each appliance and estimate
+          how many hours it operates per day.
+        </p>
+
+        <div class="formula">
+          Energy (Wh) = Power (W) × Runtime (hours)
+        </div>
+
+        <p>
+          Add the energy from all appliances to estimate your daily
+          consumption.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <h3>
+          2. Add a planning margin
+        </h3>
+
+        <p>
+          Real systems have conversion losses and operating uncertainty.
+          This calculator uses a 20% planning margin as a simple starting
+          assumption.
+        </p>
+
+        <p>
+          That does not mean every system needs exactly 20%.
+          Actual losses vary with the battery, inverter, wiring,
+          temperature, load profile, and equipment efficiency.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <h3>
+          3. Size the inverter separately
+        </h3>
+
+        <p>
+          Battery energy and inverter power are different specifications.
+          A battery can have plenty of Wh while the inverter is still
+          too small to run an appliance.
+        </p>
+
+        <p>
+          The inverter must handle the loads that may operate at the same
+          time and must also have adequate surge capability for
+          motor-driven equipment.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <h3>
+          4. Check real appliance data
+        </h3>
+
+        <p>
+          Refrigerator and freezer consumption can vary substantially.
+          Whenever possible, use the manufacturer's energy information
+          or measure the appliance with a suitable plug-in energy meter.
+        </p>
+
+        <p>
+          Measured daily Wh is usually more useful than assuming that
+          a compressor runs continuously.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- REFRIGERATOR -->
+
+  <section>
+
+    <h2>
+      How much power does a refrigerator use?
+    </h2>
+
+
+    <div class="card">
+
+      <p>
+        A refrigerator does not normally draw its maximum running power
+        continuously. Its compressor cycles on and off, while other
+        components such as fans, lights, controls, and heaters may also
+        consume electricity.
+      </p>
+
+      <p>
+        Because operating patterns vary, there is no single universal
+        refrigerator wattage or runtime that works for every model.
+      </p>
+
+
+      <div class="notice success-note">
+
+        <strong>Best approach:</strong>
+
+        If the refrigerator is already available, measure its energy
+        consumption over 24 hours. A daily Wh measurement can give you
+        a much better starting point for battery sizing than a simple
+        nameplate-wattage × hours calculation.
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SURGE -->
+
+  <section>
+
+    <h2>
+      What about refrigerator startup surge?
+    </h2>
+
+
+    <div class="card">
+
+      <p>
+        Refrigerators and freezers commonly use compressors and other
+        motor-driven equipment. Their electrical demand during startup
+        can temporarily be higher than their normal running power.
+      </p>
+
+      <p>
+        However, the amount of startup or inrush power varies by appliance,
+        compressor design, operating conditions, and inverter technology.
+      </p>
+
+
+      <div class="notice">
+
+        <strong>Do not blindly use a "3× or 5×" rule.</strong>
+
+        Generic multiplication factors can produce misleading results.
+        When possible, check the appliance documentation or measure
+        startup demand, then compare it with the inverter's specified
+        surge rating.
+
+      </div>
+
+
+      <p>
+        For a refrigerator or freezer, check both:
+      </p>
+
+
+      <ul>
+
+        <li>
+          the inverter's continuous output rating;
+        </li>
+
+        <li>
+          the inverter's surge/peak rating and duration;
+        </li>
+
+        <li>
+          the appliance's starting requirements, when available;
+        </li>
+
+        <li>
+          which other loads may start at the same time.
+        </li>
+
+      </ul>
+
+    </div>
+
+  </section>
+
+
+  <!-- BATTERY -->
+
+  <section>
+
+    <h2>
+      How much battery capacity do you need?
+    </h2>
+
+
+    <div class="card">
+
+      <p>
+        Battery capacity is normally expressed in watt-hours (Wh)
+        or kilowatt-hours (kWh).
+      </p>
+
+
+      <div class="formula">
+        1 kWh = 1,000 Wh
+      </div>
+
+
+      <p>
+        For example, a battery labeled 2,000 Wh contains 2 kWh of
+        nominal stored energy. The amount of energy actually available
+        to your loads can be lower depending on the battery's usable
+        depth of discharge, inverter losses, temperature, battery
+        management system, and manufacturer specifications.
+      </p>
+
+
+      <p>
+        This is why a battery's advertised Wh rating should not
+        automatically be interpreted as the exact amount of energy
+        your appliances will receive.
+      </p>
+
+
+      <div class="notice">
+
+        <strong>LiFePO4 note:</strong>
+
+        LiFePO4 batteries often provide a high usable energy fraction,
+        but the manufacturer's specified usable capacity and operating
+        limits should always take priority.
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REFERENCE -->
+
+  <section id="reference">
+
+    <h2>
+      Quick sizing reference
+    </h2>
+
+
+    <p class="small">
+      These are broad planning ranges, not universal equipment
+      requirements. Actual sizing should be based on your measured
+      or estimated energy use and the specifications of the equipment
+      you intend to purchase.
+    </p>
+
+
+    <div class="table-wrap">
+
       <table>
+
         <thead>
-          <tr><th>Daily consumption</th><th>Recommended battery capacity</th><th>Continuous inverter rating</th></tr>
+
+          <tr>
+
+            <th>
+              Planning energy / day
+            </th>
+
+            <th>
+              Possible battery starting range
+            </th>
+
+            <th>
+              Typical inverter planning target
+            </th>
+
+            <th>
+              Important check
+            </th>
+
+          </tr>
+
         </thead>
+
+
         <tbody>
-          <tr><td><strong>Up to 600 Wh</strong></td><td>500–1,000 Wh</td><td>300–500 W</td></tr>
-          <tr><td><strong>600–1,500 Wh</strong></td><td>1,000–1,500 Wh</td><td>500–1,000 W</td></tr>
-          <tr><td><strong>1,500–2,500 Wh</strong></td><td>2,000–3,000 Wh</td><td>1,000–1,500 W</td></tr>
-          <tr><td><strong>2,500–4,000 Wh</strong></td><td>3,000–4,000 Wh</td><td>1,500–2,500 W</td></tr>
-          <tr><td><strong>Over 4,000 Wh</strong></td><td>5,000 Wh or split across two units</td><td>3,000 W+</td></tr>
+
+          <tr>
+
+            <td>
+              Up to ~600 Wh
+            </td>
+
+            <td>
+              ~500–1,000 Wh
+            </td>
+
+            <td>
+              ~300–500 W+
+            </td>
+
+            <td>
+              Startup loads
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              ~600–1,500 Wh
+            </td>
+
+            <td>
+              ~1,000–1,500 Wh
+            </td>
+
+            <td>
+              ~500–1,000 W+
+            </td>
+
+            <td>
+              Continuous + surge rating
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              ~1,500–2,500 Wh
+            </td>
+
+            <td>
+              ~2,000–3,000 Wh
+            </td>
+
+            <td>
+              ~1,000–1,500 W+
+            </td>
+
+            <td>
+              Simultaneous loads
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              ~2,500–4,000 Wh
+            </td>
+
+            <td>
+              ~3,000–4,000 Wh+
+            </td>
+
+            <td>
+              ~1,500–2,500 W+
+            </td>
+
+            <td>
+              Battery + inverter limits
+            </td>
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              4,000+ Wh
+            </td>
+
+            <td>
+              ~5,000 Wh+
+            </td>
+
+            <td>
+              ~3,000 W+
+            </td>
+
+            <td>
+              System architecture
+            </td>
+
+          </tr>
+
         </tbody>
+
       </table>
-      <p style="font-size:0.9rem; color:var(--muted);">These figures generally assume lithium (LiFePO4) chemistry. Using AGM lead-acid instead? See the <a href="battery-guide.html" style="color:var(--amber);">battery chemistry guide</a> for how to adjust.</p>
-    </section>
 
-    <section>
-      <h2>Portable power station vs. traditional generator</h2>
-      <p>Everything on this page assumes a battery-based portable power station (the Jackery/EcoFlow/Bluetti category) rather than a fuel-burning generator, and that distinction matters for a fridge specifically. A gas generator is loud, needs to run continuously or in cycles, produces carbon monoxide (making it unsafe indoors or in an enclosed space like a camper), and needs a steady fuel supply. For unattended fridge/freezer duty — say, keeping food cold during a multi-day power outage while you're not standing next to it — a battery-based system charged by solar panels is generally the safer and lower-maintenance option, even though the upfront cost per watt-hour is usually higher than a fuel generator.</p>
-      <p>The trade-off: a battery-only system without solar input is finite. Once it's depleted, it's dead until you recharge it from the wall or from panels. A fuel generator, by contrast, can run indefinitely as long as you keep feeding it gas — which is why serious off-grid or whole-home backup setups sometimes combine both, using the battery for quiet, clean, unattended overnight power and the fuel generator as a backup for extended outages.</p>
-    </section>
+    </div>
 
-    <section>
-      <div class="callout">Ready to shop? See how popular models compare on the <a href="best-solar-generators-fridge.html">best solar generators for a fridge</a> page, or size your panels and battery chemistry first with the <a href="panel-calculator.html">panel calculator</a> and <a href="battery-guide.html">battery guide</a>.</div>
-    </section>
+  </section>
 
-    <section id="faq">
-      <h2>Common questions</h2>
-      <div class="faq-item">
-        <h3>Why do refrigerators require a large inverter surge rating?</h3>
-        <p>Refrigerators use a compressor motor. When it kicks on, it briefly draws 3–5× its running wattage before settling to normal draw — your inverter's surge rating needs to clear that spike, not just the running wattage. If the surge rating is too low, the inverter will fault and shut off the instant the compressor tries to start, even though the fridge's normal running wattage is well within the unit's continuous capacity.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How many solar panels do I need to recharge a 2,000 Wh battery?</h3>
-        <p>To fully recharge a 2,000 Wh battery in about 4 hours of peak sunlight, you'll typically need 600–800 W of panels, factoring in system efficiency losses. Use the panel calculator linked above to get an exact figure for your daily load and your region's peak sun hours.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Can I run a full-size fridge and a chest freezer on one portable unit?</h3>
-        <p>Yes, but you'll need a higher-capacity system — 3,000–4,000 Wh with an inverter robust enough to handle both compressors starting up at once. If both compressors happen to start in the same moment (which does happen occasionally, since they're not synchronized), the combined surge can briefly exceed 1,000 W even though the running wattage of both together is under 300 W.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Can a small 500 Wh unit run a fridge overnight?</h3>
-        <p>For a few hours, yes — but not through a full day-night cycle without recharging. Expect roughly 8–12 hours on a well-insulated compressor fridge before depletion, less in hot weather or with an older, less efficient fridge.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Do I need solar panels, or just the battery?</h3>
-        <p>The battery alone gives you a fixed runway. Panels let you recharge during daylight so the system can run indefinitely — essential for anything longer than a short outage, and non-negotiable if you're relying on this setup for extended off-grid living rather than an occasional power cut.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Does cold weather affect how long my generator will last?</h3>
-        <p>Yes, in two ways: the fridge's compressor may actually run less in cold ambient temperatures (less heat to fight), but the battery itself will deliver less usable capacity and charge more slowly if it gets cold, especially below freezing. If you're sizing for winter use, add extra margin on both the battery capacity and, if using solar, the panel wattage.</p>
-      </div>
-    </section>
 
-  </div>
+  <!-- SOLAR PANELS -->
+
+  <section>
+
+    <h2>
+      How many solar panels do you need?
+    </h2>
+
+
+    <div class="card">
+
+      <p>
+        Solar array sizing depends on how much energy you need to replace,
+        how many equivalent peak-sun hours are available, system losses,
+        weather, panel orientation, temperature, and the maximum solar
+        input supported by the charge controller or solar generator.
+      </p>
+
+
+      <div class="formula">
+        Approx. PV watts = Daily Wh ÷ (Peak Sun Hours × Planning Efficiency)
+      </div>
+
+
+      <p>
+        For example, a 2,000 Wh daily requirement with 4 equivalent
+        peak-sun hours and an assumed 80% system efficiency would give:
+      </p>
+
+
+      <div class="formula">
+        2,000 ÷ (4 × 0.80) = 625 W
+      </div>
+
+
+      <p>
+        That does not mean exactly 625 W of panels will always deliver
+        2,000 Wh. Real solar production changes with weather, season,
+        shading, panel temperature, orientation, and equipment limits.
+      </p>
+
+
+      <p>
+        Use the
+        <a href="panel-calculator.html">
+          Solar Panel Sizing Calculator
+        </a>
+        for a more detailed estimate.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- GENERATOR COMPARISON -->
+
+  <section id="comparison">
+
+    <h2>
+      Solar generator vs fuel generator
+    </h2>
+
+
+    <div class="two-column">
+
+      <article class="feature-card">
+
+        <h3>
+          Portable solar generator
+        </h3>
+
+        <p>
+          Battery-based power stations can operate without producing
+          exhaust at the point of use. They are generally quiet and
+          can be recharged from solar panels or another electrical
+          source, depending on the model.
+        </p>
+
+        <p>
+          They still require appropriate electrical, thermal, battery,
+          and fire safety practices.
+        </p>
+
+      </article>
+
+
+      <article class="feature-card">
+
+        <h3>
+          Fuel generator
+        </h3>
+
+        <p>
+          Gasoline, propane, and other fuel generators can provide
+          substantial continuous power and can refuel quickly.
+        </p>
+
+        <p>
+          They produce exhaust and carbon monoxide and must never be
+          operated in enclosed or inadequately ventilated spaces.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- FAQ -->
+
+  <section id="faq">
+
+    <h2>
+      Frequently asked questions
+    </h2>
+
+
+    <div class="card">
+
+
+      <div class="faq-item">
+
+        <h3>
+          How big of a solar generator do I need for a refrigerator?
+        </h3>
+
+        <p>
+          It depends on the refrigerator's actual daily energy consumption
+          and startup requirements. Instead of choosing solely by refrigerator
+          wattage, determine its approximate daily Wh consumption and then
+          select a battery with enough usable capacity plus an inverter
+          with adequate continuous and surge ratings.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          Can a 500 Wh battery run a refrigerator?
+        </h3>
+
+        <p>
+          Possibly, but runtime depends heavily on the refrigerator's
+          actual energy consumption and the power station's usable
+          capacity and inverter losses. A 500 Wh rating should not be
+          interpreted as a guaranteed number of hours.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          How many solar panels do I need for a 2,000 Wh battery?
+        </h3>
+
+        <p>
+          There is no single answer. You need to consider how much
+          energy must be replaced, available sunlight, system losses,
+          and the maximum solar charging input supported by the battery
+          system.
+        </p>
+
+        <p>
+          As an example, 2,000 Wh over 4 peak-sun hours at an assumed
+          80% planning efficiency gives about 625 W of PV.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          Can a solar generator run both a refrigerator and freezer?
+        </h3>
+
+        <p>
+          Yes, many systems can, but you need to check both the daily
+          energy requirement and the inverter's continuous and surge
+          capabilities. The difficult part can be simultaneous compressor
+          startup rather than the average daily energy alone.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          Do I need solar panels to use a solar generator?
+        </h3>
+
+        <p>
+          No. A portable power station can generally be charged from
+          another electrical source if the manufacturer supports it.
+          Solar panels become important when you want to recharge the
+          system from sunlight or operate more independently from the
+          electrical grid.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          Does cold weather affect a battery?
+        </h3>
+
+        <p>
+          Yes. Battery performance can change with temperature.
+          In particular, many LiFePO4 batteries should not be charged
+          below 0°C unless the battery has a manufacturer-approved
+          low-temperature charging system such as built-in heating
+          or appropriate protection.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          Should I choose LiFePO4 or AGM?
+        </h3>
+
+        <p>
+          LiFePO4 is often attractive for portable and frequently
+          cycled systems because of its energy density and cycle-life
+          characteristics. AGM can still make sense for certain budget,
+          temperature, or existing lead-acid applications.
+        </p>
+
+        <p>
+          Read the full
+          <a href="battery-guide.html">
+            LiFePO4 vs AGM battery guide
+          </a>
+          before choosing.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          Can I use the calculator as a final electrical design?
+        </h3>
+
+        <p>
+          No. It is a planning tool. Final system design should account
+          for actual equipment specifications, conductor sizing,
+          protection devices, battery limits, inverter limits, solar
+          input limits, environmental conditions, and applicable
+          electrical requirements.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- RELATED TOOLS -->
+
+  <section class="cta">
+
+    <h2 style="margin-top: 0;">
+      Continue sizing your off-grid system
+    </h2>
+
+    <p class="small">
+      Use the other tools and guides on Off-Grid Power Guide to build
+      a more complete system estimate.
+    </p>
+
+
+    <div class="cta-links">
+
+      <a class="cta-link" href="panel-calculator.html">
+        Solar Panel Calculator
+      </a>
+
+      <a class="cta-link" href="mppt-calculator.html">
+        MPPT Calculator
+      </a>
+
+      <a class="cta-link" href="battery-guide.html">
+        Battery Guide
+      </a>
+
+      <a class="cta-link" href="best-solar-generators-fridge.html">
+        Solar Generators for Refrigerators
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- DISCLAIMER -->
+
+  <section>
+
+    <div class="notice danger-note">
+
+      <strong>
+        Safety and accuracy notice:
+      </strong>
+
+      <p>
+        The calculations on this page are simplified planning estimates.
+        Electrical systems can create shock, fire, battery, and equipment
+        hazards when incorrectly designed or installed. Always follow
+        the instructions and limits provided by equipment manufacturers
+        and use qualified electrical assistance when required.
+      </p>
+
+    </div>
+
+  </section>
+
 </main>
 
+
 <footer>
-  <div class="wrap">
-    <span>&copy; 2026 Off-Grid Power Guide</span>
-    <span>Figures are estimates — always confirm with your appliance's actual nameplate rating. Last updated: September 2026.</span>
+
+  <div>
+    © 2026 Off-Grid Power Guide
   </div>
+
+
+  <div style="margin-top: 8px;">
+
+    <a href="about.html">
+      About
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+    <a href="sources.html">
+      Sources
+    </a>
+
+    <a href="privacy-policy.html">
+      Privacy
+    </a>
+
+    <a href="terms.html">
+      Terms
+    </a>
+
+    <a href="affiliate-disclosure.html">
+      Affiliate Disclosure
+    </a>
+
+  </div>
+
+
+  <div style="margin-top: 10px;">
+    Last updated: September 2026
+  </div>
+
 </footer>
 
+
 <script>
-(function(){
+
   const appliances = [
-    {name:"Refrigerator (compressor)", watts:150, hours:8},
-    {name:"Chest freezer", watts:120, hours:10},
-    {name:"LED lighting", watts:20, hours:5},
-    {name:"Wi-Fi router", watts:10, hours:24},
-    {name:"Laptop charging", watts:65, hours:3},
-    {name:"Phone charging", watts:10, hours:2}
+
+    {
+      name: "Refrigerator",
+      note: "Typical planning estimate",
+      watts: 150,
+      hours: 8
+    },
+
+    {
+      name: "Chest freezer",
+      note: "Typical planning estimate",
+      watts: 120,
+      hours: 10
+    },
+
+    {
+      name: "LED lighting",
+      note: "Example household load",
+      watts: 20,
+      hours: 5
+    },
+
+    {
+      name: "Wi-Fi router",
+      note: "Low continuous load",
+      watts: 10,
+      hours: 24
+    },
+
+    {
+      name: "Laptop",
+      note: "Example charging/use load",
+      watts: 65,
+      hours: 3
+    },
+
+    {
+      name: "Phone",
+      note: "Charging estimate",
+      watts: 10,
+      hours: 2
+    }
+
   ];
 
-  const rowsEl = document.getElementById('rows');
-  appliances.forEach((a, i) => {
-    const row = document.createElement('div');
-    row.className = 'appliance-row';
-    row.innerHTML = `
-      <div>${a.name}</div>
-      <div><input type="number" min="0" value="${a.watts}" data-i="${i}" data-field="watts"></div>
-      <div><input type="number" min="0" step="0.5" value="${a.hours}" data-i="${i}" data-field="hours"></div>
-      <div><input type="checkbox" checked data-i="${i}" data-field="on"></div>
-    `;
-    rowsEl.appendChild(row);
-  });
 
-  function recalc(){
-    let totalWh = 0;
-    let peakW = 0;
-    rowsEl.querySelectorAll('.appliance-row').forEach(row => {
-      const on = row.querySelector('[data-field="on"]').checked;
-      if(!on) return;
-      const w = parseFloat(row.querySelector('[data-field="watts"]').value) || 0;
-      const h = parseFloat(row.querySelector('[data-field="hours"]').value) || 0;
-      totalWh += w * h;
-      peakW += w;
+  const applianceList =
+    document.getElementById("applianceList");
+
+
+  const dailyEnergyElement =
+    document.getElementById("dailyEnergy");
+
+
+  const planningEnergyElement =
+    document.getElementById("planningEnergy");
+
+
+  const runningLoadElement =
+    document.getElementById("runningLoad");
+
+
+  const recommendationElement =
+    document.getElementById("recommendation");
+
+
+  function createAppliances() {
+
+    applianceList.innerHTML = "";
+
+
+    appliances.forEach((appliance, index) => {
+
+      const row =
+        document.createElement("div");
+
+
+      row.className =
+        "appliance-row";
+
+
+      row.innerHTML = `
+
+        <div>
+
+          <div class="appliance-name">
+            ${appliance.name}
+          </div>
+
+          <span class="appliance-note">
+            ${appliance.note}
+          </span>
+
+        </div>
+
+
+        <div>
+
+          <label
+            for="watts-${index}"
+            class="small"
+          >
+            Watts
+          </label>
+
+          <input
+            id="watts-${index}"
+            class="number-input watts"
+            type="number"
+            min="0"
+            step="1"
+            value="${appliance.watts}"
+            aria-label="${appliance.name} watts"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label
+            for="hours-${index}"
+            class="small"
+          >
+            Hours/day
+          </label>
+
+          <input
+            id="hours-${index}"
+            class="number-input hours"
+            type="number"
+            min="0"
+            max="24"
+            step="0.5"
+            value="${appliance.hours}"
+            aria-label="${appliance.name} hours per day"
+          >
+
+        </div>
+
+
+        <div class="check-wrap">
+
+          <label
+            for="include-${index}"
+            class="small"
+          >
+
+            <span class="sr-only">
+              Include ${appliance.name}
+            </span>
+
+            <input
+              id="include-${index}"
+              class="include"
+              type="checkbox"
+              checked
+              aria-label="Include ${appliance.name}"
+            >
+
+          </label>
+
+        </div>
+
+      `;
+
+
+      applianceList.appendChild(row);
+
     });
-    const bufferedWh = totalWh * 1.2;
-    document.getElementById('totalWh').textContent = Math.round(bufferedWh).toLocaleString() + ' Wh';
-    document.getElementById('peakW').textContent = Math.round(peakW).toLocaleString() + ' W';
 
-    let tier;
-    if(bufferedWh <= 600) tier = { batt: "500–1,000 Wh", inv: "300–500 W" };
-    else if(bufferedWh <= 1500) tier = { batt: "1,000–1,500 Wh", inv: "500–1,000 W" };
-    else if(bufferedWh <= 2500) tier = { batt: "2,000–3,000 Wh", inv: "1,000–1,500 W" };
-    else if(bufferedWh <= 4000) tier = { batt: "3,000–4,000 Wh", inv: "1,500–2,500 W" };
-    else tier = { batt: "5,000 Wh or split across two units", inv: "3,000 W+" };
 
-    document.getElementById('recommendation').innerHTML =
-      `<strong>Suggested minimum:</strong> a ${tier.batt} battery with a ${tier.inv} continuous inverter rating covers this load with your 20% buffer already included. Confirm surge rating separately against your highest single startup spike (usually the compressor appliance).`;
+    applianceList
+      .querySelectorAll("input")
+      .forEach(input => {
+
+        input.addEventListener(
+          "input",
+          calculate
+        );
+
+        input.addEventListener(
+          "change",
+          calculate
+        );
+
+      });
+
+
+    calculate();
+
   }
 
-  rowsEl.addEventListener('input', recalc);
-  recalc();
-})();
+
+  function roundUp(value, increment) {
+
+    if (value <= 0) {
+      return 0;
+    }
+
+    return Math.ceil(
+      value / increment
+    ) * increment;
+
+  }
+
+
+  function calculate() {
+
+    let dailyWh = 0;
+
+    let simultaneousRunningWatts = 0;
+
+
+    const rows =
+      applianceList.querySelectorAll(
+        ".appliance-row"
+      );
+
+
+    rows.forEach(row => {
+
+      const watts =
+        Number(
+          row.querySelector(".watts").value
+        ) || 0;
+
+
+      const hours =
+        Number(
+          row.querySelector(".hours").value
+        ) || 0;
+
+
+      const include =
+        row.querySelector(".include").checked;
+
+
+      if (!include) {
+        return;
+      }
+
+
+      dailyWh +=
+        watts * hours;
+
+
+      simultaneousRunningWatts +=
+        watts;
+
+    });
+
+
+    /*
+      20% is used only as a planning margin.
+      It is not a universal system-loss value.
+    */
+
+    const planningWh =
+      dailyWh * 1.20;
+
+
+    dailyEnergyElement.textContent =
+      `${Math.round(dailyWh).toLocaleString()} Wh`;
+
+
+    planningEnergyElement.textContent =
+      `${Math.round(planningWh).toLocaleString()} Wh`;
+
+
+    runningLoadElement.textContent =
+      `${Math.round(
+        simultaneousRunningWatts
+      ).toLocaleString()} W`;
+
+
+    if (dailyWh <= 0) {
+
+      recommendationElement.innerHTML =
+        "Select at least one appliance to see a sizing estimate.";
+
+      return;
+
+    }
+
+
+    /*
+      Inverter planning target:
+      25% margin above the assumed simultaneous running load.
+      Rounded upward to the next 100 W.
+      Minimum planning target = 300 W.
+
+      This does NOT calculate compressor startup surge.
+    */
+
+    const inverterTarget =
+      Math.max(
+        300,
+        roundUp(
+          simultaneousRunningWatts * 1.25,
+          100
+        )
+      );
+
+
+    let batteryTarget;
+
+
+    if (planningWh <= 600) {
+
+      batteryTarget =
+        "500–1,000 Wh";
+
+    } else if (planningWh <= 1500) {
+
+      batteryTarget =
+        "1,000–1,500 Wh";
+
+    } else if (planningWh <= 2500) {
+
+      batteryTarget =
+        "2,000–3,000 Wh";
+
+    } else if (planningWh <= 4000) {
+
+      batteryTarget =
+        "3,000–4,000 Wh+";
+
+    } else {
+
+      batteryTarget =
+        "5,000 Wh+ or a larger system";
+
+    }
+
+
+    recommendationElement.innerHTML = `
+
+      <strong>
+        Planning starting point:
+      </strong>
+
+      <br><br>
+
+      Battery capacity:
+      <strong>
+        ${batteryTarget}
+      </strong>
+
+      <br>
+
+      Inverter continuous-output target:
+      <strong>
+        ${inverterTarget.toLocaleString()} W+
+      </strong>
+
+      <br><br>
+
+      This assumes the selected appliances could contribute
+      to the simultaneous running load. Before buying equipment,
+      verify the inverter's continuous and surge ratings and
+      the battery's usable capacity.
+
+      <br><br>
+
+      <strong>
+        Compressor warning:
+      </strong>
+
+      Refrigerators and freezers can have startup/inrush demand
+      above their normal running power. Do not estimate that
+      surge from a generic multiplier; check the appliance and
+      inverter specifications whenever possible.
+
+    `;
+
+  }
+
+
+  createAppliances();
+
 </script>
 
 </body>
