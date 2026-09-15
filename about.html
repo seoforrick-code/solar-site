@@ -1,0 +1,537 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Off-Grid Power Guide | Solar Sizing & Power Resources</title>
+
+  <meta
+    name="description"
+    content="Learn about Off-Grid Power Guide, a resource for solar generator sizing, battery capacity, solar panels, MPPT charge controllers, and off-grid power planning."
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <link
+    rel="canonical"
+    href="https://solar-guide-livid.vercel.app/about.html"
+  >
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Off-Grid Power Guide">
+  <meta
+    property="og:description"
+    content="Learn about Off-Grid Power Guide and our approach to practical off-grid solar and backup power information."
+  >
+  <meta property="og:type" content="website">
+  <meta
+    property="og:url"
+    content="https://solar-guide-livid.vercel.app/about.html"
+  >
+
+  <!-- Google Search Console -->
+  <meta
+    name="google-site-verification"
+    content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A"
+  >
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Off-Grid Power Guide",
+    "url": "https://solar-guide-livid.vercel.app/",
+    "description": "Practical resources and calculators for off-grid solar, backup power, batteries, solar panels, and charge controllers."
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b1120;
+      color: #e5e7eb;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #60a5fa;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 17, 32, 0.95);
+      border-bottom: 1px solid #1f2937;
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      color: #f9fafb;
+      font-size: 1.05rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 70px 20px 80px;
+    }
+
+    .hero {
+      margin-bottom: 55px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #60a5fa;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      color: #f9fafb;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 750px;
+      color: #cbd5e1;
+      font-size: 1.08rem;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      color: #f9fafb;
+      font-size: 1.7rem;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      color: #f9fafb;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: #cbd5e1;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+
+    .notice {
+      background: #111827;
+      border-left: 4px solid #60a5fa;
+      border-radius: 10px;
+      padding: 22px;
+      margin-top: 25px;
+    }
+
+    .notice p:last-child {
+      margin-bottom: 0;
+    }
+
+    .cta {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 30px;
+    }
+
+    .cta p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      border-top: 1px solid #1f2937;
+      background: #080d18;
+      padding: 35px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px 22px;
+      margin-bottom: 18px;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: #60a5fa;
+    }
+
+    footer p {
+      color: #64748b;
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        gap: 12px 16px;
+      }
+
+      main {
+        padding-top: 50px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav aria-label="Main navigation">
+
+      <a class="logo" href="index.html">
+        Off-Grid Power Guide
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Calculator</a>
+        <a href="panel-calculator.html">Panel Sizing</a>
+        <a href="mppt-calculator.html">MPPT</a>
+        <a href="battery-guide.html">Batteries</a>
+        <a href="best-solar-generators-fridge.html">Generators</a>
+        <a href="about.html" aria-current="page">About</a>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <div class="hero">
+
+      <span class="eyebrow">About the site</span>
+
+      <h1>About Off-Grid Power Guide</h1>
+
+      <p>
+        Off-Grid Power Guide is an educational resource designed to make
+        off-grid solar and backup power planning easier to understand.
+      </p>
+
+      <p>
+        The site provides practical calculators, guides, and explanations
+        covering solar generators, batteries, solar panels, charge
+        controllers, and other parts of an off-grid power system.
+      </p>
+
+    </div>
+
+    <!-- What we do -->
+    <section>
+
+      <h2>What We Do</h2>
+
+      <p>
+        Designing an off-grid or backup power system can involve many
+        different numbers: watts, watt-hours, battery capacity, solar
+        production, inverter output, charging current, and more.
+      </p>
+
+      <p>
+        Our goal is to turn these concepts into information that is easier
+        to understand and use for preliminary planning.
+      </p>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <h3>Solar & Battery Calculators</h3>
+
+          <p>
+            Interactive tools help estimate daily energy needs, solar array
+            size, and other system-planning values.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Practical Guides</h3>
+
+          <p>
+            Explanations cover batteries, solar panels, MPPT charge
+            controllers, solar generators, and common off-grid questions.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Planning Information</h3>
+
+          <p>
+            We explain the assumptions behind calculations so users can
+            understand what an estimate does and does not tell them.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Product Research</h3>
+
+          <p>
+            Some pages discuss solar generators and other equipment using
+            specifications and publicly available product information.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Our approach -->
+    <section>
+
+      <h2>Our Approach</h2>
+
+      <p>
+        Off-grid power systems are highly dependent on the equipment,
+        environment, installation, and intended use. For that reason,
+        calculator results on this site are intended as planning estimates,
+        not as universal equipment specifications.
+      </p>
+
+      <p>
+        When a calculation depends on manufacturer specifications, electrical
+        ratings, battery chemistry, temperature, solar conditions, or other
+        system-specific factors, those limitations should be taken into
+        account before purchasing or installing equipment.
+      </p>
+
+      <p>
+        We aim to make the assumptions behind our calculations clear rather
+        than presenting a single number as guaranteed for every system.
+      </p>
+
+    </section>
+
+    <!-- Sources -->
+    <section>
+
+      <h2>Information & Sources</h2>
+
+      <p>
+        Technical information should be supported by reliable documentation
+        whenever possible. Depending on the subject, useful sources can
+        include government energy resources, national laboratories,
+        manufacturers' technical documentation, product manuals, and other
+        authoritative references.
+      </p>
+
+      <p>
+        You can see the references and source information used throughout
+        the site on our
+        <a href="sources.html">Sources & References</a>
+        page.
+      </p>
+
+    </section>
+
+    <!-- Independence -->
+    <section>
+
+      <h2>Independent Educational Resource</h2>
+
+      <p>
+        Off-Grid Power Guide is an independent educational website. Product
+        mentions or recommendations should not be interpreted as an
+        endorsement by a manufacturer unless explicitly stated.
+      </p>
+
+      <p>
+        Some links on the site may be affiliate links. If you purchase a
+        product through an eligible affiliate link, the site may receive a
+        commission at no additional cost to you.
+      </p>
+
+      <p>
+        More information is available in our
+        <a href="affiliate-disclosure.html">
+          Affiliate Disclosure
+        </a>.
+      </p>
+
+    </section>
+
+    <!-- Safety -->
+    <section>
+
+      <h2>Safety & Limitations</h2>
+
+      <div class="notice">
+
+        <p>
+          Solar panels, batteries, inverters, charge controllers, wiring,
+          fuses, and other electrical equipment can present serious safety
+          risks when improperly selected or installed.
+        </p>
+
+        <p>
+          The calculators and information on this website are intended for
+          general educational and preliminary planning purposes. They do not
+          replace the equipment manufacturer's instructions, applicable
+          electrical codes, or advice from a qualified electrical
+          professional.
+        </p>
+
+        <p>
+          Always verify system-specific ratings and installation requirements
+          before purchasing, wiring, or operating equipment.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- Contact -->
+    <section>
+
+      <h2>Questions or Corrections?</h2>
+
+      <div class="cta">
+
+        <p>
+          If you find an error, have a question about the site's calculators,
+          or have information that could help improve a page, we'd like to
+          hear from you.
+        </p>
+
+        <p>
+          Visit our
+          <a href="contact.html">Contact page</a>
+          to get in touch.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="sources.html">Sources</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="affiliate-disclosure.html">
+          Affiliate Disclosure
+        </a>
+      </div>
+
+      <p>
+        © 2026 Off-Grid Power Guide. For educational and planning purposes.
+      </p>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
+```

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sources & References | Off-Grid Power Guide</title>
+
+  <meta
+    name="description"
+    content="Sources and references used by Off-Grid Power Guide for solar panels, batteries, solar generators, charge controllers, and off-grid power information."
+  >
+
+  <link
+    rel="canonical"
+    href="https://solar-guide-livid.vercel.app/sources.html"
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:title"
+    content="Sources & References | Off-Grid Power Guide"
+  >
+
+  <meta
+    property="og:description"
+    content="Technical sources and references used for Off-Grid Power Guide calculators and educational resources."
+  >
+
+  <meta
+    property="og:url"
+    content="https://solar-guide-livid.vercel.app/sources.html"
+  >
+
+  <!-- Google Search Console -->
+  <meta
+    name="google-site-verification"
+    content="pgLu5T6rFIyx6Kym4Wt-WWWevRNjktvxs9XQZozh94A"
+  >
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Sources & References",
+    "url": "https://solar-guide-livid.vercel.app/sources.html",
+    "description": "Sources and references used by Off-Grid Power Guide."
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b1220;
+      color: #e5e7eb;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background: #111827;
+      border-bottom: 1px solid #1f2937;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #f9fafb;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #60a5fa;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+      color: #f9fafb;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      color: #94a3b8;
+      font-size: 18px;
+    }
+
+    section {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      color: #f9fafb;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 26px;
+    }
+
+    h3 {
+      color: #f9fafb;
+      margin-top: 25px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #cbd5e1;
+    }
+
+    ul {
+      color: #cbd5e1;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 14px;
+    }
+
+    .source-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 22px;
+      margin-top: 18px;
+    }
+
+    .source-card h3 {
+      margin-top: 0;
+    }
+
+    .source-type {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #93c5fd;
+      background: #172554;
+      padding: 4px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .notice {
+      background: #111827;
+      border-left: 4px solid #60a5fa;
+      border-radius: 10px;
+      padding: 22px;
+      margin-top: 20px;
+    }
+
+    footer {
+      border-top: 1px solid #1f2937;
+      background: #080e19;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .copyright {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      section {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+
+    <a class="logo" href="index.html">
+      Off-Grid Power Guide
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html">Calculator</a>
+      <a href="panel-calculator.html">Panel Sizing</a>
+      <a href="mppt-calculator.html">MPPT</a>
+      <a href="battery-guide.html">Batteries</a>
+      <a href="best-solar-generators-fridge.html">Generators</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="hero">
+
+    <h1>Sources & References</h1>
+
+    <p>
+      Off-Grid Power Guide uses technical references, government
+      resources, manufacturer documentation, and established energy
+      information to support its calculators and educational content.
+    </p>
+
+  </div>
+
+  <section>
+
+    <h2>How We Use Sources</h2>
+
+    <p>
+      Our calculators are designed to provide practical planning
+      estimates. Technical information can vary depending on equipment,
+      installation conditions, location, temperature, and manufacturer
+      specifications.
+    </p>
+
+    <p>
+      When a calculation depends on equipment-specific information,
+      users should always verify the result against the documentation
+      supplied by the manufacturer.
+    </p>
+
+    <div class="notice">
+
+      <strong>Important:</strong>
+
+      Information on this website is provided for educational and
+      planning purposes. It is not a substitute for professional
+      electrical, engineering, or installation advice.
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <h2>Government & Research Sources</h2>
+
+    <div class="source-card">
+
+      <span class="source-type">Government</span>
+
+      <h3>U.S. Department of Energy</h3>
+
+      <p>
+        The U.S. Department of Energy provides educational and technical
+        information covering solar energy, energy efficiency,
+        renewable energy technologies, and residential energy systems.
+      </p>
+
+    </div>
+
+    <div class="source-card">
+
+      <span class="source-type">Research</span>
+
+      <h3>National Renewable Energy Laboratory (NREL)</h3>
+
+      <p>
+        NREL publishes research and technical resources related to
+        solar photovoltaics, renewable energy systems, solar resource
+        assessment, energy technologies, and grid and off-grid
+        applications.
+      </p>
+
+    </div>
+
+    <div class="source-card">
+
+      <span class="source-type">Energy Data</span>
+
+      <h3>ENERGY STAR</h3>
+
+      <p>
+        ENERGY STAR provides information about energy-efficient
+        appliances and products. Appliance energy-use information can
+        be useful when estimating daily energy consumption.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <h2>Manufacturer Documentation</h2>
+
+    <p>
+      Manufacturer documentation is particularly important when
+      evaluating real equipment because electrical limits and operating
+      specifications differ between products.
+    </p>
+
+    <ul>
+
+      <li>
+        Solar panel datasheets for Voc, Vmp, Isc, Imp, power rating,
+        temperature coefficients, and maximum series fuse ratings.
+      </li>
+
+      <li>
+        Battery manuals for usable capacity, recommended depth of
+        discharge, charging temperature limits, maximum charge and
+        discharge current, and battery management system specifications.
+      </li>
+
+      <li>
+        Solar generator specifications for battery capacity, continuous
+        AC output, surge capability, solar input limits, charging
+        characteristics, and operating conditions.
+      </li>
+
+      <li>
+        Charge controller documentation for maximum PV voltage,
+        maximum PV current, charging current, supported battery
+        voltages, and manufacturer installation requirements.
+      </li>
+
+      <li>
+        Inverter documentation for continuous output, surge capability,
+        DC input requirements, and installation limitations.
+      </li>
+
+    </ul>
+
+    <p>
+      For any real installation, the manufacturer's current technical
+      documentation should take priority over generalized estimates
+      presented on this website.
+    </p>
+
+  </section>
+
+  <section>
+
+    <h2>Electrical Standards & Safety</h2>
+
+    <p>
+      Electrical installations must comply with the codes, standards,
+      permits, and requirements applicable to the installation location.
+    </p>
+
+    <p>
+      Depending on the project, relevant requirements may include the
+      National Electrical Code (NEC), local electrical codes,
+      equipment certification requirements, manufacturer instructions,
+      and requirements from the local authority having jurisdiction.
+    </p>
+
+    <p>
+      Our calculators should not be interpreted as code-compliance
+      tools or as a replacement for professional electrical design.
+    </p>
+
+  </section>
+
+  <section>
+
+    <h2>Sources Used by Our Calculators</h2>
+
+    <h3>Solar Generator Calculator</h3>
+
+    <p>
+      Uses basic electrical energy relationships such as watts × hours
+      = watt-hours, combined with clearly identified planning
+      assumptions. Actual appliance consumption can vary substantially.
+    </p>
+
+    <h3>Solar Panel Calculator</h3>
+
+    <p>
+      Uses daily energy demand, estimated peak-sun hours, and a
+      planning efficiency factor to estimate an approximate solar array
+      size. Real production varies with weather, orientation, shading,
+      temperature, system losses, and equipment characteristics.
+    </p>
+
+    <h3>MPPT Calculator</h3>
+
+    <p>
+      Uses basic PV electrical relationships and planning calculations.
+      Final controller and protection selection must be checked against
+      panel specifications, controller specifications, conductor
+      ampacity, applicable electrical requirements, and manufacturer
+      documentation.
+    </p>
+
+    <h3>Battery Guide</h3>
+
+    <p>
+      Battery information is presented as general educational guidance.
+      Actual usable capacity, charging limits, cycle life, temperature
+      limits, and recommended depth of discharge vary by battery model
+      and manufacturer.
+    </p>
+
+  </section>
+
+  <section>
+
+    <h2>Keeping Information Updated</h2>
+
+    <p>
+      Solar technology, products, specifications, regulations, and
+      industry practices can change over time.
+    </p>
+
+    <p>
+      We may update pages when technical information changes or when
+      errors and ambiguities are identified.
+    </p>
+
+    <p>
+      If you notice an outdated statement or technical error, please
+      contact us through our
+      <a href="contact.html">Contact page</a>.
+    </p>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <div class="footer-links">
+
+    <a href="about.html">About</a>
+
+    <a href="contact.html">Contact</a>
+
+    <a href="sources.html">Sources</a>
+
+    <a href="privacy-policy.html">Privacy Policy</a>
+
+    <a href="terms.html">Terms</a>
+
+    <a href="affiliate-disclosure.html">Affiliate Disclosure</a>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 Off-Grid Power Guide. All rights reserved.
+  </div>
+
+</footer>
+
+</body>
+</html>
